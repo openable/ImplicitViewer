@@ -16,5 +16,16 @@ namespace ImplicitViewer
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openPanel = new OpenFileDialog();
+            openPanel.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openPanel.Filter = "Raw Data (*raw.txt)|*raw.txt|All files (*.*)|*.*";
+            if (openPanel.ShowDialog() == DialogResult.OK)
+                textBox1.Text = openPanel.SafeFileName;
+            else
+                textBox1.Text = "None";
+        }
     }
 }
