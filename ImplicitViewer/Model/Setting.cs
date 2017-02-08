@@ -12,6 +12,8 @@ namespace ImplicitViewer.Model
     class Setting
     {
         public static StreamReader reader;
+        public static string path;
+        public static Encoding encode;
         public static StreamWriter dataFile;
         public static StreamWriter csvFile;
         public static StreamWriter rawFile;

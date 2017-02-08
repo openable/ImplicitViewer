@@ -54,8 +54,9 @@ namespace ImplicitViewer
         private void initReader()
         {
             string line;
-            Encoding encode = System.Text.Encoding.GetEncoding("ks_c_5601-1987");
-            Setting.reader = new StreamReader(textBox1.Tag.ToString(), encode);
+            Setting.encode = System.Text.Encoding.GetEncoding("ks_c_5601-1987");
+            Setting.path = textBox1.Tag.ToString();
+            Setting.reader = new StreamReader(Setting.path, Setting.encode);
 
             line = Setting.reader.ReadLine();
             if (line.IndexOf("[실험 시작]") == -1)
@@ -68,10 +69,9 @@ namespace ImplicitViewer
             {
                 string[] w = line.Split('\t');
 
+                Setting.ID = w[1];
                 Setting.SCREEN_WIDTH = Int32.Parse(w[3]);
                 Setting.SCREEN_WIDTH = Int32.Parse(w[4]);
-
-                Console.WriteLine(w[3] + "   " + w[4]);
 
                 Setting.reader.Close();
             }
