@@ -1,4 +1,4 @@
-﻿namespace ImplicitTest
+﻿namespace ImplicitViewer
 {
     partial class Task2
     {

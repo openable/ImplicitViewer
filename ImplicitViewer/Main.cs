@@ -16,9 +16,14 @@ namespace ImplicitViewer
 {
     public partial class Main : Form
     {
+        public Task1 task1;
+        public Task2 task2;
+        public int current;
+
         public Main()
         {
             InitializeComponent();
+            Setting.main = this;
             textBox1.Tag = "";
         }
 

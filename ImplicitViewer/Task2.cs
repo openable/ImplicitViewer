@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 using ImplicitViewer.Model;
 
-namespace ImplicitTest
+namespace ImplicitViewer
 {
     public partial class Task2 : Form
     {
