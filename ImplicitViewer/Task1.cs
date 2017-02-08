@@ -68,5 +68,44 @@ namespace ImplicitViewer
         {
             // Setting.rawFile.WriteLine("==========================================");
         }
+
+        private void keyControl(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.PageUp)
+            {
+                this.Close();
+                Setting.main.current--;
+                Setting.main.showTask();
+            }
+            else if (e.KeyCode == Keys.PageDown)
+            {
+                this.Close();
+                Setting.main.current++;
+                Setting.main.showTask();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Setting.main.current--;
+            Setting.main.showTask();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Setting.main.current++;
+            Setting.main.showTask();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

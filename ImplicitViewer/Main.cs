@@ -205,7 +205,7 @@ namespace ImplicitViewer
 
         public void showTask()
         {
-            if (current < Setting.taskList.Count)
+            if ((0 <= current) && (current < Setting.taskList.Count))
             {
                 Item item = (Item)Setting.taskList[current];
 
@@ -220,12 +220,17 @@ namespace ImplicitViewer
                     task2.Show();
                 }
             }
+            else if (current < 0)
+            {
+                MessageBox.Show("첫번째 화면 입니다.", "오류", MessageBoxButtons.OK);
+                this.current = 0;
+                showTask();
+            }
             else
             {
-                Console.WriteLine("[실험 종료]");
-                this.Close();
-                // Application.ExitThread();
-                // Process.GetCurrentProcess().Kill();
+                MessageBox.Show("마지막 화면 입니다.", "오류", MessageBoxButtons.OK);
+                this.current = Setting.taskList.Count -1;
+                showTask();
             }
         }
     }
