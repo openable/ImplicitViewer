@@ -49,7 +49,7 @@
             this.Controls.Add(this.taskNum);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Task1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Task1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formClosing);
             this.ResumeLayout(false);

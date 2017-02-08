@@ -24,6 +24,7 @@ namespace ImplicitViewer
         {
             InitializeComponent();
             Setting.main = this;
+            Setting.fontSize = 20;
             textBox1.Tag = "";
         }
 
@@ -77,7 +78,7 @@ namespace ImplicitViewer
 
                 Setting.ID = w[1];
                 Setting.SCREEN_WIDTH = Int32.Parse(w[3]);
-                Setting.SCREEN_WIDTH = Int32.Parse(w[4]);
+                Setting.SCREEN_HEIGHT = Int32.Parse(w[4]);
 
                 Setting.reader.Close();
             }
@@ -222,11 +223,6 @@ namespace ImplicitViewer
             else
             {
                 Console.WriteLine("[실험 종료]");
-                Setting.dataFile.WriteLine("[실험 종료]");
-                Setting.rawFile.WriteLine("[실험 종료]");
-                Setting.dataFile.Close();
-                Setting.csvFile.Close();
-                Setting.rawFile.Close();
                 this.Close();
                 // Application.ExitThread();
                 // Process.GetCurrentProcess().Kill();
