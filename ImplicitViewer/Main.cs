@@ -75,6 +75,68 @@ namespace ImplicitViewer
 
                 Setting.reader.Close();
             }
+
+            setTask();
+        }
+
+        private void setTask()
+        {
+            string line;
+            string[] w;
+            Setting.reader = new StreamReader(Setting.path, Setting.encode);
+
+            int type;
+            string stimulus;
+            string[] choice;
+
+
+            while((line = Setting.reader.ReadLine()) != null)
+            {
+                if (line.IndexOf("문항번호:") != -1)
+                {
+                    line = Setting.reader.ReadLine();
+                    w = line.Split('\t');
+                    type = Int32.Parse(w[1]);
+
+                    line = Setting.reader.ReadLine();
+                    w = line.Split('\t');
+                    stimulus = w[1];
+
+                    line = Setting.reader.ReadLine();
+                    if (type == 1)
+                    {
+                        string[] wo = new string[15];
+
+                        for (int i = 0; i < 15; i++)
+                        {
+                            line = Setting.reader.ReadLine();
+                            w = line.Split('\t');
+                            wo[i] = w[0];
+                        }
+
+                        choice = wo;
+                    }
+                    else
+                    {
+                        string[] wo = new string[2];
+
+                        for (int i = 0; i < 2; i++)
+                        {
+                            line = Setting.reader.ReadLine();
+                            w = line.Split('\t');
+                            wo[i] = w[0];
+                        }
+
+                        choice = wo;
+                    }
+
+                    Console.WriteLine(type + "=" +stimulus + "=" + choice[1]);
+                }
+
+                
+            }
+
+            Setting.reader.Close();
         }
     }
 }
