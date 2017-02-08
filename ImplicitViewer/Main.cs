@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+
+using ImplicitViewer.Model;
 
 namespace ImplicitViewer
 {
@@ -38,9 +41,9 @@ namespace ImplicitViewer
         private void button2_Click(object sender, EventArgs e)
         {
             if (textBox1.Tag.Equals(""))
-                MessageBox.Show("데이터 파일을 선택해 주세요", "오류", MessageBoxButtons.OK);
+                MessageBox.Show("데이터 파일을 선택해 주세요.", "오류", MessageBoxButtons.OK);
             else
-                showResult();
+                initReader();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -48,6 +51,17 @@ namespace ImplicitViewer
             this.Close();
         }
 
-        private void showResult() { }
+        private void initReader()
+        {
+            string line;
+            Setting.reader = new StreamReader(textBox1.Tag.ToString());
+
+            line = Setting.reader.ReadLine();
+            if (line.IndexOf("[실험 시작]") == -1)
+            {
+                MessageBox.Show("옳지 않은 데이터 파일 입니다.", "오류", MessageBoxButtons.OK);
+                return;
+            }
+        }
     }
 }
