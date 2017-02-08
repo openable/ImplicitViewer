@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 
 using ImplicitViewer.Model;
+using System.Collections;
 
 namespace ImplicitViewer
 {
@@ -81,6 +82,7 @@ namespace ImplicitViewer
 
         private void setTask()
         {
+            Setting.taskList = new ArrayList();
             string line;
             string[] w;
             Setting.reader = new StreamReader(Setting.path, Setting.encode);
@@ -130,10 +132,16 @@ namespace ImplicitViewer
                         choice = wo;
                     }
 
-                    Console.WriteLine(type + "=" +stimulus + "=" + choice[1]);
+                    Item item = new Item(type, stimulus);
+                    item.choice = choice;
+                    Setting.taskList.Add(item);
                 }
+            }
 
-                
+            for (int i = 0; i < Setting.taskList.Count; i++)
+            {
+                Item item = (Item)Setting.taskList[i];
+                Console.WriteLine(item.stimulus);
             }
 
             Setting.reader.Close();
