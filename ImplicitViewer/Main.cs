@@ -82,7 +82,7 @@ namespace ImplicitViewer
                 Setting.reader.Close();
             }
 
-            setCoordinate()
+            setCoordinate();
             setTask();
         }
 
@@ -196,13 +196,41 @@ namespace ImplicitViewer
                 }
             }
 
-            for (int i = 0; i < Setting.taskList.Count; i++)
-            {
-                Item item = (Item)Setting.taskList[i];
-                Console.WriteLine(item.stimulus);
-            }
-
             Setting.reader.Close();
+
+            current = 0;
+            showTask();
+        }
+
+        public void showTask()
+        {
+            if (current < Setting.taskList.Count)
+            {
+                Item item = (Item)Setting.taskList[current];
+
+                if (item.type == 1)
+                {
+                    task1 = new Task1(current);
+                    task1.Show();
+                }
+                else
+                {
+                    task2 = new Task2(current);
+                    task2.Show();
+                }
+            }
+            else
+            {
+                Console.WriteLine("[실험 종료]");
+                Setting.dataFile.WriteLine("[실험 종료]");
+                Setting.rawFile.WriteLine("[실험 종료]");
+                Setting.dataFile.Close();
+                Setting.csvFile.Close();
+                Setting.rawFile.Close();
+                this.Close();
+                // Application.ExitThread();
+                // Process.GetCurrentProcess().Kill();
+            }
         }
     }
 }
