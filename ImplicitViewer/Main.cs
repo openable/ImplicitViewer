@@ -61,7 +61,19 @@ namespace ImplicitViewer
             if (line.IndexOf("[실험 시작]") == -1)
             {
                 MessageBox.Show("옳지 않은 데이터 파일 입니다.", "오류", MessageBoxButtons.OK);
+                Setting.reader.Close();
                 return;
+            }
+            else
+            {
+                string[] w = line.Split('\t');
+
+                Setting.SCREEN_WIDTH = Int32.Parse(w[3]);
+                Setting.SCREEN_WIDTH = Int32.Parse(w[4]);
+
+                Console.WriteLine(w[3] + "   " + w[4]);
+
+                Setting.reader.Close();
             }
         }
     }
