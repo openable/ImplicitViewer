@@ -54,7 +54,8 @@ namespace ImplicitViewer
         private void initReader()
         {
             string line;
-            Setting.reader = new StreamReader(textBox1.Tag.ToString());
+            Encoding encode = System.Text.Encoding.GetEncoding("ks_c_5601-1987");
+            Setting.reader = new StreamReader(textBox1.Tag.ToString(), encode);
 
             line = Setting.reader.ReadLine();
             if (line.IndexOf("[실험 시작]") == -1)
