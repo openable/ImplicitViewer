@@ -193,7 +193,29 @@ namespace ImplicitViewer
 
                     Item item = new Item(type, stimulus);
                     item.choice = choice;
+                    item.cList = new ArrayList();
                     Setting.taskList.Add(item);
+
+                    if (type == 1)
+                    {
+                        for (int i = 0; i < (3 + 1 + 15 + 3); i++)
+                            line = Setting.reader.ReadLine();
+
+                        while (!(line = Setting.reader.ReadLine()).Equals(""))
+                        {
+                            w = line.Split('\t');
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < (3 + 1 + 2 + 3); i++)
+                            line = Setting.reader.ReadLine();
+
+                        while (!(line = Setting.reader.ReadLine()).Equals(""))
+                        {
+                            w = line.Split('\t');
+                        }
+                    }
                 }
             }
 

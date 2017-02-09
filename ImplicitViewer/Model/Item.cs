@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace ImplicitViewer.Model
         public string[] choice;
         public string content;
         public string msg;
+        public ArrayList cList;
 
         public Item()
         {
