@@ -31,7 +31,6 @@ namespace ImplicitViewer
             Item task = (Item)Setting.taskList[num];
 
             initStimulus(task);
-            drawCdot(task);
         }
 
         private void initStimulus(Item item)
@@ -63,19 +62,6 @@ namespace ImplicitViewer
                 words[i].SetBounds((int)Setting.cWord[i].X, (int)Setting.cWord[i].Y, (int)Setting.sWord.X, (int)Setting.sWord.Y);
                 this.Controls.Add(words[i]);
             }
-        }
-
-        private void drawCdot(Item item)
-        {
-            Graphics gr = this.CreateGraphics();
-            gr.Clear(Color.White);
-            Brush br = new SolidBrush(Color.Red);
-            foreach (Cdot c in item.cList)
-            {
-                gr.FillRectangle(br, (c.x-2), (c.y-2), 5, 5);
-            }
-
-            gr.Dispose();
         }
 
         private void formClosing(object sender, FormClosingEventArgs e)
@@ -119,15 +105,10 @@ namespace ImplicitViewer
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Item item = (Item)Setting.taskList[(current-1)];
+            Item item = (Item)Setting.taskList[(current - 1)];
 
             Graphics gr = this.CreateGraphics();
-            
+
             Brush br = new SolidBrush(Color.Red);
             foreach (Cdot c in item.cList)
             {
@@ -135,6 +116,11 @@ namespace ImplicitViewer
             }
 
             gr.Dispose();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

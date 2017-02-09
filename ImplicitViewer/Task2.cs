@@ -151,6 +151,21 @@ namespace ImplicitViewer
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Item item = (Item)Setting.taskList[(current - 1)];
+
+            Graphics gr = this.CreateGraphics();
+
+            Brush br = new SolidBrush(Color.Red);
+            foreach (Cdot c in item.cList)
+            {
+                gr.FillRectangle(br, (c.x - 2), (c.y - 2), 5, 5);
+            }
+
+            gr.Dispose();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }
