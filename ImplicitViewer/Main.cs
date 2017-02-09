@@ -89,7 +89,7 @@ namespace ImplicitViewer
 
         private void setCoordinate()
         {
-            Setting.margin = new PointF(30, 30);
+            Setting.margin = new Point(30, 30);
             Setting.sStimulus = new PointF((float)((Setting.SCREEN_WIDTH - Setting.margin.X * 2) / 4.0),
                 (float)((Setting.SCREEN_HEIGHT - Setting.margin.Y * 2) / 8.0));
             Setting.cStimulus = new PointF((float)((Setting.SCREEN_WIDTH - Setting.sStimulus.X) / 2.0),

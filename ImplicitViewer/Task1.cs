@@ -112,12 +112,14 @@ namespace ImplicitViewer
 
             
             Panel pan = new Panel();
-            pan.Parent = this;
+
             //pan.BackColor = Color.FromArgb(90, 255, 255, 255);
-            pan.BackColor = Color.FromArgb(90, 0, 0, 0);
+            pan.BackColor = Color.Transparent;
+            pan.Parent = this;
             pan.SetBounds(0, Setting.margin.Y, Setting.SCREEN_WIDTH, (Setting.SCREEN_HEIGHT- Setting.margin.Y));
             this.Controls.Add(pan);
             pan.BringToFront();
+           
 
             Graphics gr = pan.CreateGraphics();
             
