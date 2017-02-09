@@ -18,6 +18,8 @@ namespace ImplicitViewer
         private int current;
         private Word stimulus;
         private Word[] choice = new Word[2];
+        private Panel map;
+        private bool mapShow = true;
 
         public Task2(int num)
         {
@@ -151,17 +153,41 @@ namespace ImplicitViewer
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Item item = (Item)Setting.taskList[(current - 1)];
-
-            Graphics gr = this.CreateGraphics();
-
-            Brush br = new SolidBrush(Color.Red);
-            foreach (Cdot c in item.cList)
+            if (mapShow)
             {
-                gr.FillRectangle(br, (c.x - 2), (c.y - 2), 5, 5);
-            }
+                Item item = (Item)Setting.taskList[(current - 1)];
+                map = new Panel();
 
-            gr.Dispose();
+                //pan.BackColor = Color.FromArgb(90, 255, 255, 255);
+                map.BackColor = Color.Transparent;
+                map.Parent = this;
+                map.SetBounds(0, Setting.margin.Y, Setting.SCREEN_WIDTH, (Setting.SCREEN_HEIGHT - Setting.margin.Y));
+                this.Controls.Add(map);
+                map.BringToFront();
+
+
+                Graphics gr = map.CreateGraphics();
+
+                //Graphics gr = this.CreateGraphics();
+
+                Brush br = new SolidBrush(Color.Red);
+                foreach (Cdot c in item.cList)
+                {
+                    if (c.y < Setting.margin.Y)
+                        continue;
+
+                    gr.FillRectangle(br, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
+                }
+
+                gr.Dispose();
+
+                mapShow = false;
+            }
+            else
+            {
+                this.Controls.Remove(map);
+                mapShow = true;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
