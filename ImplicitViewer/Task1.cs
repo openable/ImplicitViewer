@@ -115,7 +115,7 @@ namespace ImplicitViewer
             pan.Parent = this;
             //pan.BackColor = Color.FromArgb(90, 255, 255, 255);
             pan.BackColor = Color.FromArgb(90, 0, 0, 0);
-            pan.SetBounds(0, (int)Setting.margin.Y, Setting.SCREEN_WIDTH, (Setting.SCREEN_HEIGHT- (int)Setting.margin.Y));
+            pan.SetBounds(0, Setting.margin.Y, Setting.SCREEN_WIDTH, (Setting.SCREEN_HEIGHT- Setting.margin.Y));
             this.Controls.Add(pan);
             pan.BringToFront();
 
@@ -126,10 +126,10 @@ namespace ImplicitViewer
             Brush br = new SolidBrush(Color.Red);
             foreach (Cdot c in item.cList)
             {
-                if (c.y < (int)Setting.margin.Y)
+                if (c.y < Setting.margin.Y)
                     continue;
 
-                gr.FillRectangle(br, (c.x - 2), (c.y - 2- (int)Setting.margin.Y), 5, 5);
+                gr.FillRectangle(br, (c.x - 2), (c.y - 2- Setting.margin.Y), 5, 5);
             }
 
             gr.Dispose();

@@ -22,7 +22,7 @@ namespace ImplicitViewer.Model
         public static int SCREEN_WIDTH;
         public static int SCREEN_HEIGHT;
 
-        public static PointF margin;
+        public static Point margin;
         public static PointF sStimulus;
         public static PointF cStimulus;
         public static PointF aWord;
