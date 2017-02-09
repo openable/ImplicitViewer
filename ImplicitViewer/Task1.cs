@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 
 using ImplicitViewer.Model;
+using System.Runtime.InteropServices;
 
 namespace ImplicitViewer
 {
@@ -107,7 +108,13 @@ namespace ImplicitViewer
         {
             Item item = (Item)Setting.taskList[(current - 1)];
 
-            Graphics gr = this.CreateGraphics();
+            Panel pan = new Panel();
+            pan.BackColor = Color.Transparent;
+            pan.SetBounds(0, 0, Setting.SCREEN_WIDTH, Setting.SCREEN_HEIGHT);
+            this.Controls.Add(pan);
+            pan.BringToFront();
+
+            Graphics gr = pan.CreateGraphics();
 
             Brush br = new SolidBrush(Color.Red);
             foreach (Cdot c in item.cList)
