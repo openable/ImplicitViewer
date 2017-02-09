@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ImplicitViewer.Model
 {
-    class Word : System.Windows.Forms.Button
+    class Word : System.Windows.Forms.Label
     {
         public double gazeTime;
         private bool sequential = false;
@@ -18,7 +18,7 @@ namespace ImplicitViewer.Model
             gazeTime = 0.0;
             starTime = 0.0;
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            UseVisualStyleBackColor = true;
+//            UseVisualStyleBackColor = true;
         }
 
         public Word(string text, bool img, bool head)
@@ -26,12 +26,12 @@ namespace ImplicitViewer.Model
             gazeTime = 0.0;
             starTime = 0.0;
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            UseVisualStyleBackColor = true;
+//            UseVisualStyleBackColor = true;
             if (!img) this.Text = text;
             this.value = text;
-            this.FlatAppearance.BorderSize = 1;
+//            this.FlatAppearance.BorderSize = 1;
             // 단어 테두리 색깔 수정 부분
-            this.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+//            this.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 
             if (head)
@@ -44,7 +44,9 @@ namespace ImplicitViewer.Model
                 this.ForeColor = System.Drawing.Color.White;
                 this.Font = new System.Drawing.Font("Malgun Gothic", Setting.fontSize, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             }
-            this.BackColor = System.Drawing.Color.Black;
+            //this.BackColor = System.Drawing.Color.Black;
+            //this.BackColor = System.Drawing.Color.FromArgb(50, 255, 0, 0);
+            this.BackColor = System.Drawing.Color.Transparent;
         }
 
         public bool isGazeHit(double time, double x, double y)

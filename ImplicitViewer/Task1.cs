@@ -55,12 +55,14 @@ namespace ImplicitViewer
                 stimulus = new Word(item.stimulus, false, true);
                 stimulus.SetBounds((int)Setting.cStimulus.X, (int)Setting.cStimulus.Y, (int)Setting.sStimulus.X, (int)Setting.sStimulus.Y);
             }
+            stimulus.Parent = this;
             this.Controls.Add(stimulus);
 
             for (int i = 0; i < 15; i++)
             {
                 words[i] = new Word(item.choice[i], false, false);
                 words[i].SetBounds((int)Setting.cWord[i].X, (int)Setting.cWord[i].Y, (int)Setting.sWord.X, (int)Setting.sWord.Y);
+                words[i].Parent = this;
                 this.Controls.Add(words[i]);
             }
         }
@@ -108,18 +110,26 @@ namespace ImplicitViewer
         {
             Item item = (Item)Setting.taskList[(current - 1)];
 
+            
             Panel pan = new Panel();
-            pan.BackColor = Color.Transparent;
-            pan.SetBounds(0, 0, Setting.SCREEN_WIDTH, Setting.SCREEN_HEIGHT);
+            pan.Parent = this;
+            //pan.BackColor = Color.FromArgb(90, 255, 255, 255);
+            pan.BackColor = Color.FromArgb(90, 0, 0, 0);
+            pan.SetBounds(0, (int)Setting.margin.Y, Setting.SCREEN_WIDTH, (Setting.SCREEN_HEIGHT- (int)Setting.margin.Y));
             this.Controls.Add(pan);
             pan.BringToFront();
 
             Graphics gr = pan.CreateGraphics();
+            
+            //Graphics gr = this.CreateGraphics();
 
             Brush br = new SolidBrush(Color.Red);
             foreach (Cdot c in item.cList)
             {
-                gr.FillRectangle(br, (c.x - 2), (c.y - 2), 5, 5);
+                if (c.y < (int)Setting.margin.Y)
+                    continue;
+
+                gr.FillRectangle(br, (c.x - 2), (c.y - 2- (int)Setting.margin.Y), 5, 5);
             }
 
             gr.Dispose();
