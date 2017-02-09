@@ -19,7 +19,7 @@ namespace ImplicitViewer
         private int current;
         private Word stimulus;
         private Word[] words = new Word[15];
-        private Panel map;
+        private Map map;
         private bool mapShow = true;
 
         public Task1(int num)
@@ -58,6 +58,7 @@ namespace ImplicitViewer
                 stimulus.SetBounds((int)Setting.cStimulus.X, (int)Setting.cStimulus.Y, (int)Setting.sStimulus.X, (int)Setting.sStimulus.Y);
             }
             stimulus.Parent = this;
+            stimulus.SendToBack();
             this.Controls.Add(stimulus);
 
             for (int i = 0; i < 15; i++)
@@ -113,10 +114,10 @@ namespace ImplicitViewer
             if (mapShow)
             {
                 Item item = (Item)Setting.taskList[(current - 1)];
-                map = new Panel();
+                map = new Map();
 
                 //pan.BackColor = Color.FromArgb(90, 255, 255, 255);
-                map.BackColor = Color.Transparent;
+                //map.BackColor = Color.Transparent;
                 map.Parent = this;
                 map.SetBounds(0, Setting.margin.Y, Setting.SCREEN_WIDTH, (Setting.SCREEN_HEIGHT - Setting.margin.Y));
                 this.Controls.Add(map);

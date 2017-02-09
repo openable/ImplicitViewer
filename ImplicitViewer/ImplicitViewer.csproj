@@ -52,6 +52,9 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Map.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Model\Cdot.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Word.cs">

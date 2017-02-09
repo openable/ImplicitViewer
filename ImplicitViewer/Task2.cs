@@ -18,7 +18,7 @@ namespace ImplicitViewer
         private int current;
         private Word stimulus;
         private Word[] choice = new Word[2];
-        private Panel map;
+        private Map map;
         private bool mapShow = true;
 
         public Task2(int num)
@@ -156,7 +156,7 @@ namespace ImplicitViewer
             if (mapShow)
             {
                 Item item = (Item)Setting.taskList[(current - 1)];
-                map = new Panel();
+                map = new Map();
 
                 //pan.BackColor = Color.FromArgb(90, 255, 255, 255);
                 map.BackColor = Color.Transparent;
