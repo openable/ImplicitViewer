@@ -19,6 +19,12 @@ namespace ImplicitViewer.Model
             word = "";
         }
 
+        public Cdot(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+
         public Cdot(int x, int y, string w)
         {
             this.x = x;
