@@ -38,8 +38,8 @@ namespace ImplicitViewer
 
         private void initStimulus(Item item)
         {
-            item.shuffle();
-
+            //item.shuffle();
+            
             if (item.stimulus.Contains("s.png"))
             {
                 stimulus = new Word(item.stimulus, true, true);
