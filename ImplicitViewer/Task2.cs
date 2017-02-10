@@ -171,7 +171,7 @@ namespace ImplicitViewer
                 //Graphics gr = this.CreateGraphics();
 
                 Brush brr = new SolidBrush(Color.Red);
-                Brush brb = new SolidBrush(Color.SkyBlue);
+                Brush brb = new SolidBrush(Color.Red);
                 foreach (Cdot c in item.cList)
                 {
                     if (c.y < Setting.margin.Y)
