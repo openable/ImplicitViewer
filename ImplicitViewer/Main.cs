@@ -180,6 +180,13 @@ namespace ImplicitViewer
                     stimulus = w[1];
 
                     line = Setting.reader.ReadLine();
+                    w = line.Split('\t');
+                    if (!w[0].Equals("선택순서:"))
+                    {
+                        stimulus = stimulus + "\r\n" + w[0];
+                        line = Setting.reader.ReadLine();
+                    }
+
                     if (type == 1)
                     {
                         string[] wo = new string[15];
