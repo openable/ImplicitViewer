@@ -19,6 +19,7 @@ namespace ImplicitViewer
         public Task1 task1;
         public Task2 task2;
         public int current;
+        private string[] fList;
 
         public Main()
         {
@@ -33,10 +34,22 @@ namespace ImplicitViewer
             OpenFileDialog openPanel = new OpenFileDialog();
             openPanel.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             openPanel.Filter = "Raw Data (*raw.txt)|*raw.txt|All files (*.*)|*.*";
+            openPanel.Multiselect = true;
+
             if (openPanel.ShowDialog() == DialogResult.OK)
             {
-                textBox1.Text = openPanel.SafeFileName;
-                textBox1.Tag = openPanel.FileName;
+                if (openPanel.FileNames.Length == 1)
+                {
+                    textBox1.Text = openPanel.SafeFileName;
+                    textBox1.Tag = openPanel.FileName;
+                    fList = null;
+                }
+                else
+                {
+                    textBox1.Text = "0 / " + openPanel.FileNames.Length;
+                    fList = openPanel.FileNames;
+                }
+                
             }
             else
             {
@@ -47,7 +60,7 @@ namespace ImplicitViewer
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox1.Tag.Equals(""))
+            if (textBox1.Tag.Equals("") && fList == null)
                 MessageBox.Show("데이터 파일을 선택해 주세요.", "오류", MessageBoxButtons.OK);
             else
                 initReader();
@@ -60,9 +73,13 @@ namespace ImplicitViewer
 
         private void initReader()
         {
+
             string line;
             Setting.encode = System.Text.Encoding.GetEncoding("ks_c_5601-1987");
-            Setting.path = textBox1.Tag.ToString();
+            if (fList == null)
+                Setting.path = textBox1.Tag.ToString();
+            else
+                Setting.path = fList[0];
             Setting.reader = new StreamReader(Setting.path, Setting.encode);
 
             line = Setting.reader.ReadLine();
@@ -150,7 +167,6 @@ namespace ImplicitViewer
             string stimulus;
             string[] choice;
 
-
             while((line = Setting.reader.ReadLine()) != null)
             {
                 if (line.IndexOf("문항번호:") != -1)
@@ -223,6 +239,45 @@ namespace ImplicitViewer
             }
 
             Setting.reader.Close();
+
+            if (fList != null)
+            {
+                textBox1.Text = "1 / " + fList.Length;
+
+                for (int k = 1; k < fList.Length; k++)
+                {
+                    int num = 0;
+                    Setting.reader = new StreamReader(fList[k], Setting.encode);
+
+
+                    while ((line = Setting.reader.ReadLine()) != null)
+                    {
+                        if (line.IndexOf("총 이동비중:") != -1)
+                        {
+                            Item item = (Item)Setting.taskList[num];
+
+                            while (!(line = Setting.reader.ReadLine()).Equals(""))
+                            {
+                                if (line.IndexOf("[") != -1)
+                                    continue;
+
+                                w = line.Split('\t');
+                                Cdot cdot = new Cdot(Int32.Parse(w[1]), Int32.Parse(w[2]));
+                                if (w.Length > 3)
+                                    cdot.word = w[3];
+                                item.cList.Add(cdot);
+                            }
+
+                            Setting.taskList[num] = item;
+                            num++;
+                        }
+                    }
+
+
+                    Setting.reader.Close();
+                    textBox1.Text = (k + 1) + " / " + fList.Length;
+                }
+            }
 
             current = 0;
             showTask();
