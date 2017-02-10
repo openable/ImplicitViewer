@@ -170,13 +170,17 @@ namespace ImplicitViewer
 
                 //Graphics gr = this.CreateGraphics();
 
-                Brush br = new SolidBrush(Color.Red);
+                Brush brr = new SolidBrush(Color.Red);
+                Brush brb = new SolidBrush(Color.SkyBlue);
                 foreach (Cdot c in item.cList)
                 {
                     if (c.y < Setting.margin.Y)
                         continue;
-
-                    gr.FillRectangle(br, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
+                    if (c.word == null)
+                        gr.FillRectangle(brb, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
+                    else
+                        gr.FillRectangle(brr, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
+                    map.BringToFront();
                 }
 
                 gr.Dispose();
