@@ -16,7 +16,7 @@ namespace ImplicitViewer
             SetStyle(ControlStyles.Opaque, true);
         }
 
-        private int opacity = 0;
+        private int opacity = 100;
 
         public int Opacity
         {

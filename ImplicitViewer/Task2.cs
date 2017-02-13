@@ -18,7 +18,8 @@ namespace ImplicitViewer
         private int current;
         private Word stimulus;
         private Word[] choice = new Word[2];
-        private Map map;
+        //        private Map map;
+        private Panel map;
         private bool mapShow = true;
 
         public Task2(int num)
@@ -38,7 +39,7 @@ namespace ImplicitViewer
         private void initStimulus(Item item)
         {
             //item.shuffle();
-            if (!Setting.pictureType) item.reverse();
+            //if (!Setting.pictureType) item.reverse();
 
             if (item.stimulus.Contains("s.png"))
             {
@@ -156,7 +157,8 @@ namespace ImplicitViewer
             if (mapShow)
             {
                 Item item = (Item)Setting.taskList[(current - 1)];
-                map = new Map();
+                //map = new Map();
+                map = new Panel();
 
                 //pan.BackColor = Color.FromArgb(90, 255, 255, 255);
                 map.BackColor = Color.Transparent;
