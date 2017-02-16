@@ -12,8 +12,6 @@ namespace ImplicitViewer.Model
         public int type;
         public string stimulus;
         public string[] choice;
-        public string content;
-        public string msg;
         public ArrayList cList;
 
         public Item()
