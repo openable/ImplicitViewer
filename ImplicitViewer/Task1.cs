@@ -19,8 +19,8 @@ namespace ImplicitViewer
         private int current;
         private Word stimulus;
         private Word[] words = new Word[15];
-        //private Map map;
-        private Panel map;
+        private Map map;
+        //private Panel map;
         private bool mapShow = true;
 
         public Task1(int num)
@@ -34,7 +34,6 @@ namespace ImplicitViewer
             Item task = (Item)Setting.taskList[num];
             taskNum.Text = "문항:\t" + task.pNum;
             
-
             initStimulus(task);
         }
 
@@ -47,17 +46,26 @@ namespace ImplicitViewer
                 stimulus = new Word(item.stimulus, true, true);
                 stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                 stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 105), (int)Setting.margin.Y, 210, 280);
+
+                item.rStimuls.w = (int)(210 + (2 * Setting.xBuffer));
+                item.rStimuls.h = (int)(280 + (2 * Setting.yBuffer));
             }
             else if (item.stimulus.Contains(".png"))
             {
                 stimulus = new Word(item.stimulus, true, true);
                 stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                 stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 150), (int)Setting.margin.Y, 300, 400);
+
+                item.rStimuls.w = (int)(300 + (2 * Setting.xBuffer));
+                item.rStimuls.h = (int)(400 + (2 * Setting.yBuffer));
             }
             else
             {
                 stimulus = new Word(item.stimulus, false, true);
                 stimulus.SetBounds((int)Setting.cStimulus.X, (int)Setting.cStimulus.Y, (int)Setting.sStimulus.X, (int)Setting.sStimulus.Y);
+
+                item.rStimuls.w = (int)(Setting.sStimulus.X + (2 * Setting.xBuffer));
+                item.rStimuls.h = (int)(Setting.sStimulus.Y + (2 * Setting.yBuffer));
             }
             stimulus.Parent = this;
             stimulus.SendToBack();
@@ -69,6 +77,9 @@ namespace ImplicitViewer
                 words[i].SetBounds((int)Setting.cWord[i].X, (int)Setting.cWord[i].Y, (int)Setting.sWord.X, (int)Setting.sWord.Y);
                 words[i].Parent = this;
                 this.Controls.Add(words[i]);
+
+                item.rChoice[i].w = (int)(Setting.sWord.X + (2 * Setting.xBuffer));
+                item.rChoice[i].h = (int)(Setting.sWord.Y + (2 * Setting.yBuffer));
             }
         }
 
@@ -116,8 +127,8 @@ namespace ImplicitViewer
             if (mapShow)
             {
                 Item item = (Item)Setting.taskList[(current - 1)];
-                //map = new Map();
-                map = new Panel();
+                map = new Map();
+                //map = new Panel();
 
                 //pan.BackColor = Color.FromArgb(90, 255, 255, 255);
                 //map.BackColor = Color.Transparent;
@@ -126,13 +137,12 @@ namespace ImplicitViewer
                 map.BringToFront();
                 this.Controls.Add(map);
 
-                
                 Graphics gr = map.CreateGraphics();
 
                 //Graphics gr = this.CreateGraphics();
 
                 Brush brr = new SolidBrush(Color.Red);
-                Brush brb = new SolidBrush(Color.Red);
+                Brush brb = new SolidBrush(Color.SkyBlue);
                 foreach (Cdot c in item.cList)
                 {
                     if (c.y < Setting.margin.Y)
@@ -144,14 +154,20 @@ namespace ImplicitViewer
                     map.BringToFront();
                 }
 
-                gr.Dispose();
+                Pen myPen = new Pen(Color.Red);
+                gr.DrawRectangle(myPen, new Rectangle(item.rStimuls.x, item.rStimuls.y - Setting.margin.Y, item.rStimuls.w, item.rStimuls.h));
 
                 stimulus.SendToBack();
-                foreach (Word w in words)
+                for (int i = 0; i < 15; i++)
                 {
-                    w.SendToBack();
+                    gr.DrawRectangle(myPen, new Rectangle(item.rChoice[i].x, item.rChoice[i].y - Setting.margin.Y, item.rChoice[i].w, item.rChoice[i].h));
+                    words[i].SendToBack();
                 }
-                
+
+                brr.Dispose();
+                brb.Dispose();
+                myPen.Dispose();
+                gr.Dispose();
 
                 mapShow = false;
             }
