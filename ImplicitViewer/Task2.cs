@@ -30,8 +30,8 @@ namespace ImplicitViewer
             this.SetBounds(0, 0, Setting.SCREEN_WIDTH, Setting.SCREEN_HEIGHT);
 
             current = num + 1;
-            taskNum.Text = "화면\t" + (current);
             Item task = (Item)Setting.taskList[num];
+            taskNum.Text = "문항:\t" + task.pNum;
 
             initStimulus(task);
         }
