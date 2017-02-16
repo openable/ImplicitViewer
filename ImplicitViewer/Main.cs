@@ -254,6 +254,10 @@ namespace ImplicitViewer
                     Item item = new Item(type, stimulus);
                     item.choice = choice;
 
+                    //제시자극과 선택순서 좌표 정보 설정
+                    item.rStimuls = rStimuls;
+                    item.rChoice = rChoice;
+
                     //응답시간 인식
                     line = Setting.reader.ReadLine();
                     w = line.Split('\t');
