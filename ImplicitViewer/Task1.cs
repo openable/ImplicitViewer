@@ -195,5 +195,57 @@ namespace ImplicitViewer
         {
             this.Close();
         }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
+
+        private void textBox1_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Equals("X"))
+                textBox1.Text = "";
+        }
+
+        private void textBox2_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox2.Text.Equals("Y"))
+                textBox2.Text = "";
+        }
+
+        private void textBox3_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox3.Text.Equals("W"))
+                textBox3.Text = "";
+        }
+
+        private void textBox4_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox4.Text.Equals("H"))
+                textBox4.Text = "";
+        }
     }
 }
