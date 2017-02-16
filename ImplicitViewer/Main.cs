@@ -193,11 +193,16 @@ namespace ImplicitViewer
                     line = Setting.reader.ReadLine();
                     w = line.Split('\t');
                     stimulus = w[1];
-                    rStimuls.x = (int)Convert.ToSingle(w[2]);
-                    rStimuls.y = (int)Convert.ToSingle(w[3]);
-                    // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
-                    // rStimuls.w = (int)Convert.ToSingle(w[4]);
-                    // rStimuls.h = (int)Convert.ToSingle(w[5]);
+
+                    //제시자극이 2줄로 넘어오는 경우를 대비하기 위해 if문 예외처리
+                    if (w.Length == 6)
+                    {
+                        rStimuls.x = (int)Convert.ToSingle(w[2]);
+                        rStimuls.y = (int)Convert.ToSingle(w[3]);
+                        // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
+                        // rStimuls.w = (int)Convert.ToSingle(w[4]);
+                        // rStimuls.h = (int)Convert.ToSingle(w[5]);
+                    }
 
                     //제시자극 인식 할 때 줄바꿈 들어간 경우 예외처리
                     line = Setting.reader.ReadLine();
@@ -205,6 +210,11 @@ namespace ImplicitViewer
                     if (!w[0].Equals("선택순서:"))
                     {
                         stimulus = stimulus + "\r\n" + w[0];
+                        rStimuls.x = (int)Convert.ToSingle(w[1]);
+                        rStimuls.y = (int)Convert.ToSingle(w[2]);
+                        // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
+                        // rStimuls.w = (int)Convert.ToSingle(w[3]);
+                        // rStimuls.h = (int)Convert.ToSingle(w[4]);
                         line = Setting.reader.ReadLine();
                     }
 
@@ -222,8 +232,16 @@ namespace ImplicitViewer
                         w = line.Split('\t');
                         choice[i] = w[0];
                         rChoice[i] = new Rect();
-                        rChoice[i].x = (int)Convert.ToSingle(w[1]);
-                        rChoice[i].y = (int)Convert.ToSingle(w[2]);
+                        if (w.Length < 6)
+                        {
+                            rChoice[i].x = (int)Convert.ToSingle(w[1]);
+                            rChoice[i].y = (int)Convert.ToSingle(w[2]);
+                        }
+                        else
+                        {
+                            rChoice[i].x = (int)Convert.ToSingle(w[2]);
+                            rChoice[i].y = (int)Convert.ToSingle(w[3]);
+                        }
                         // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
                         //rChoice[i].w = (int)Convert.ToSingle(w[3]);
                         //rChoice[i].h = (int)Convert.ToSingle(w[4]);
