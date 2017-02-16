@@ -166,6 +166,7 @@ namespace ImplicitViewer
             int type;
             string stimulus;
             Rect rStimuls = new Rect();
+            int nChoice;
             string[] choice;
             Rect[] rChoice;
 
@@ -194,7 +195,7 @@ namespace ImplicitViewer
                     stimulus = w[1];
                     rStimuls.x = (int)Convert.ToSingle(w[2]);
                     rStimuls.y = (int)Convert.ToSingle(w[3]);
-                    // raw 데이터 출력에 이미 잘못되어서 기본 환경 값을 토대로 바로 잡기로 함.
+                    // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
                     // rStimuls.w = (int)Convert.ToSingle(w[4]);
                     // rStimuls.h = (int)Convert.ToSingle(w[5]);
 
@@ -209,30 +210,23 @@ namespace ImplicitViewer
 
                     //선택순서 인식
                     if (type == 1)
-                    {
-                        string[] wo = new string[15];
-
-                        for (int i = 0; i < 15; i++)
-                        {
-                            line = Setting.reader.ReadLine();
-                            w = line.Split('\t');
-                            wo[i] = w[0];
-                        }
-
-                        choice = wo;
-                    }
+                        nChoice = 15;
                     else
+                        nChoice = 2;
+                    
+                    choice = new string[nChoice];
+                    rChoice = new Rect[nChoice];
+                    for (int i = 0; i < nChoice; i++)
                     {
-                        string[] wo = new string[2];
-
-                        for (int i = 0; i < 2; i++)
-                        {
-                            line = Setting.reader.ReadLine();
-                            w = line.Split('\t');
-                            wo[i] = w[0];
-                        }
-
-                        choice = wo;
+                        line = Setting.reader.ReadLine();
+                        w = line.Split('\t');
+                        choice[i] = w[0];
+                        rChoice[i] = new Rect();
+                        rChoice[i].x = (int)Convert.ToSingle(w[1]);
+                        rChoice[i].y = (int)Convert.ToSingle(w[2]);
+                        // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
+                        //rChoice[i].w = (int)Convert.ToSingle(w[3]);
+                        //rChoice[i].h = (int)Convert.ToSingle(w[4]);
                     }
 
                     //문항유형과 제시자극, 선택순서 정보로 item 변수 생성
