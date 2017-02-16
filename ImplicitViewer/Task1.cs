@@ -22,6 +22,7 @@ namespace ImplicitViewer
         private Map map;
         //private Panel map;
         private bool mapShow = true;
+        private bool sizeSet = true;        // 제시자극, 선택순서 너비, 높이 고정 명시 변수
 
         public Task1(int num)
         {
@@ -47,8 +48,11 @@ namespace ImplicitViewer
                 stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                 stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 105), (int)Setting.margin.Y, 210, 280);
 
-                item.rStimuls.w = (int)(210 + (2 * Setting.xBuffer));
-                item.rStimuls.h = (int)(280 + (2 * Setting.yBuffer));
+                if (sizeSet)
+                {
+                    item.rStimuls.w = (int)(210 + (2 * Setting.xBuffer));
+                    item.rStimuls.h = (int)(280 + (2 * Setting.yBuffer));
+                }
             }
             else if (item.stimulus.Contains(".png"))
             {
@@ -56,16 +60,22 @@ namespace ImplicitViewer
                 stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                 stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 150), (int)Setting.margin.Y, 300, 400);
 
-                item.rStimuls.w = (int)(300 + (2 * Setting.xBuffer));
-                item.rStimuls.h = (int)(400 + (2 * Setting.yBuffer));
+                if (sizeSet)
+                {
+                    item.rStimuls.w = (int)(300 + (2 * Setting.xBuffer));
+                    item.rStimuls.h = (int)(400 + (2 * Setting.yBuffer));
+                }
             }
             else
             {
                 stimulus = new Word(item.stimulus, false, true);
                 stimulus.SetBounds((int)Setting.cStimulus.X, (int)Setting.cStimulus.Y, (int)Setting.sStimulus.X, (int)Setting.sStimulus.Y);
 
-                item.rStimuls.w = (int)(Setting.sStimulus.X + (2 * Setting.xBuffer));
-                item.rStimuls.h = (int)(Setting.sStimulus.Y + (2 * Setting.yBuffer));
+                if (sizeSet)
+                {
+                    item.rStimuls.w = (int)(Setting.sStimulus.X + (2 * Setting.xBuffer));
+                    item.rStimuls.h = (int)(Setting.sStimulus.Y + (2 * Setting.yBuffer));
+                }
             }
             stimulus.Parent = this;
             stimulus.SendToBack();
@@ -78,8 +88,11 @@ namespace ImplicitViewer
                 words[i].Parent = this;
                 this.Controls.Add(words[i]);
 
-                item.rChoice[i].w = (int)(Setting.sWord.X + (2 * Setting.xBuffer));
-                item.rChoice[i].h = (int)(Setting.sWord.Y + (2 * Setting.yBuffer));
+                if (sizeSet)
+                {
+                    item.rChoice[i].w = (int)(Setting.sWord.X + (2 * Setting.xBuffer));
+                    item.rChoice[i].h = (int)(Setting.sWord.Y + (2 * Setting.yBuffer));
+                }
             }
         }
 
