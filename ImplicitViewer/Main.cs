@@ -167,18 +167,31 @@ namespace ImplicitViewer
             string stimulus;
             string[] choice;
 
+            int pNum;        //문항번호
+            int rTime;       //응답시간
+            int sTime;       //자극단어 응시시간
+            string dWord;    //선택단어
+            int[] gTime;     //선택순서 응시시간 저장용
+
             while((line = Setting.reader.ReadLine()) != null)
             {
                 if (line.IndexOf("문항번호:") != -1)
                 {
+                    //문항번호 인식
+                    w = line.Split('\t');
+                    pNum = Int32.Parse(w[1]);
+
+                    //문항유형 인식
                     line = Setting.reader.ReadLine();
                     w = line.Split('\t');
                     type = Int32.Parse(w[1]);
 
+                    //제시자극 인식
                     line = Setting.reader.ReadLine();
                     w = line.Split('\t');
                     stimulus = w[1];
 
+                        //제시자극 인식 할 때 줄바꿈 들어간 경우 예외처리
                     line = Setting.reader.ReadLine();
                     w = line.Split('\t');
                     if (!w[0].Equals("선택순서:"))
@@ -187,6 +200,7 @@ namespace ImplicitViewer
                         line = Setting.reader.ReadLine();
                     }
 
+                    //선택순서 인식
                     if (type == 1)
                     {
                         string[] wo = new string[15];
@@ -214,13 +228,44 @@ namespace ImplicitViewer
                         choice = wo;
                     }
 
+                    //문항유형과 제시자극, 선택순서 정보로 item 변수 생성
                     Item item = new Item(type, stimulus);
                     item.choice = choice;
-                    item.cList = new ArrayList();
+
+                    //문항번호 정보 추가
+                    item.pNum = pNum;
 
                     if (type == 1)
                     {
-                        for (int i = 0; i < (3 + 1 + 15 + 3 + 1); i++)
+                        //응답시간 인식
+                        line = Setting.reader.ReadLine();
+                        w = line.Split('\t');
+                        rTime = Int32.Parse(w[1]);
+
+                        //선택단어 인식
+                        line = Setting.reader.ReadLine();
+                        w = line.Split('\t');
+                        dWord = w[1];
+
+                        //응시시간 안내 줄 넘기기
+                        line = Setting.reader.ReadLine();
+
+                        //제시자극 응시시간 인식
+                        line = Setting.reader.ReadLine();
+                        w = line.Split('\t');
+                        sTime = (int)Convert.ToSingle(w[1]);
+
+                        //선택단어 응시시간 인식
+                        gTime = new int[15];
+                        for (int i = 0; i < 15; i++)
+                        {
+                            line = Setting.reader.ReadLine();
+                            w = line.Split('\t');
+                            gTime[i] = (int)Convert.ToSingle(w[1]);
+                        }
+                            
+
+                        for (int i = 0; i < (3 + 1); i++)
                             line = Setting.reader.ReadLine();
                     }
                     else
@@ -229,8 +274,11 @@ namespace ImplicitViewer
                             line = Setting.reader.ReadLine();
                     }
 
+                    //시선응시 raw data line 인식
+                    item.cList = new ArrayList();
                     while (!(line = Setting.reader.ReadLine()).Equals(""))
                     {
+                        //시선이탈 정보 뛰어넘기 예외 처리
                         if (line.IndexOf("[") != -1)
                             continue;
 
