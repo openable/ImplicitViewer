@@ -165,7 +165,9 @@ namespace ImplicitViewer
 
             int type;
             string stimulus;
+            Rect rStimuls = new Rect();
             string[] choice;
+            Rect[] rChoice;
 
             int pNum;        //문항번호
             int rTime;       //응답시간
@@ -190,8 +192,13 @@ namespace ImplicitViewer
                     line = Setting.reader.ReadLine();
                     w = line.Split('\t');
                     stimulus = w[1];
+                    rStimuls.x = (int)Convert.ToSingle(w[2]);
+                    rStimuls.y = (int)Convert.ToSingle(w[3]);
+                    // raw 데이터 출력에 이미 잘못되어서 기본 환경 값을 토대로 바로 잡기로 함.
+                    // rStimuls.w = (int)Convert.ToSingle(w[4]);
+                    // rStimuls.h = (int)Convert.ToSingle(w[5]);
 
-                        //제시자극 인식 할 때 줄바꿈 들어간 경우 예외처리
+                    //제시자극 인식 할 때 줄바꿈 들어간 경우 예외처리
                     line = Setting.reader.ReadLine();
                     w = line.Split('\t');
                     if (!w[0].Equals("선택순서:"))
