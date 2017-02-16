@@ -9,10 +9,16 @@ namespace ImplicitViewer.Model
 {
     class Item
     {
-        public int type;
-        public string stimulus;
-        public string[] choice;
-        public ArrayList cList;
+        public int type;        //문항유형
+        public string stimulus; //자극단어
+        public string[] choice; //선택단어 목록
+        public ArrayList cList; //시선좌표 raw line data, 점 찍을 수 있게
+
+        public int pNum;        //문항번호
+        public int rTime;       //응답시간
+        public int sTime;       //자극단어 응시시간
+        public string dWord;    //선택단어
+        public int[] gTime;     //선택단어 응시시간 저장용
 
         public Item()
         {
