@@ -200,8 +200,8 @@ namespace ImplicitViewer
                         rStimuls.x = (int)Convert.ToSingle(w[2]);
                         rStimuls.y = (int)Convert.ToSingle(w[3]);
                         // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
-                        // rStimuls.w = (int)Convert.ToSingle(w[4]);
-                        // rStimuls.h = (int)Convert.ToSingle(w[5]);
+                        rStimuls.w = (int)Convert.ToSingle(w[4]);
+                        rStimuls.h = (int)Convert.ToSingle(w[5]);
                     }
 
                     //제시자극 인식 할 때 줄바꿈 들어간 경우 예외처리
@@ -213,8 +213,8 @@ namespace ImplicitViewer
                         rStimuls.x = (int)Convert.ToSingle(w[1]);
                         rStimuls.y = (int)Convert.ToSingle(w[2]);
                         // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
-                        // rStimuls.w = (int)Convert.ToSingle(w[3]);
-                        // rStimuls.h = (int)Convert.ToSingle(w[4]);
+                        rStimuls.w = (int)Convert.ToSingle(w[3]);
+                        rStimuls.h = (int)Convert.ToSingle(w[4]);
                         line = Setting.reader.ReadLine();
                     }
 
@@ -236,15 +236,18 @@ namespace ImplicitViewer
                         {
                             rChoice[i].x = (int)Convert.ToSingle(w[1]);
                             rChoice[i].y = (int)Convert.ToSingle(w[2]);
+                            // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
+                            rChoice[i].w = (int)Convert.ToSingle(w[3]);
+                            rChoice[i].h = (int)Convert.ToSingle(w[4]);
                         }
                         else
                         {
                             rChoice[i].x = (int)Convert.ToSingle(w[2]);
                             rChoice[i].y = (int)Convert.ToSingle(w[3]);
+                            // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
+                            rChoice[i].w = (int)Convert.ToSingle(w[4]);
+                            rChoice[i].h = (int)Convert.ToSingle(w[5]);
                         }
-                        // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
-                        //rChoice[i].w = (int)Convert.ToSingle(w[3]);
-                        //rChoice[i].h = (int)Convert.ToSingle(w[4]);
                     }
 
                     //문항유형과 제시자극, 선택순서 정보로 item 변수 생성
