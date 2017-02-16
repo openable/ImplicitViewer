@@ -18,7 +18,7 @@ namespace ImplicitViewer.Model
         public int rTime;       //응답시간
         public int sTime;       //자극단어 응시시간
         public string dWord;    //선택단어
-        public int[] gTime;     //선택단어 응시시간 저장용
+        public int[] gTime;     //선택순서 응시시간 저장용
 
         public Item()
         {
