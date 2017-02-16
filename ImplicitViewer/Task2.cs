@@ -18,8 +18,8 @@ namespace ImplicitViewer
         private int current;
         private Word stimulus;
         private Word[] choice = new Word[2];
-        //        private Map map;
-        private Panel map;
+        private Map map;
+        //private Panel map;
         private bool mapShow = true;
 
         public Task2(int num)
@@ -46,18 +46,29 @@ namespace ImplicitViewer
                 stimulus = new Word(item.stimulus, true, true);
                 stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                 stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 105), (int)Setting.margin.Y, 210, 280);
+
+                item.rStimuls.w = (int)(210 + (2 * Setting.xBuffer));
+                item.rStimuls.h = (int)(280 + (2 * Setting.yBuffer));
             }
             else if (item.stimulus.Contains(".png"))
             {
                 stimulus = new Word(item.stimulus, true, true);
                 stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                 stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 150), (int)Setting.margin.Y, 300, 400);
+
+                item.rStimuls.w = (int)(300 + (2 * Setting.xBuffer));
+                item.rStimuls.h = (int)(400 + (2 * Setting.yBuffer));
             }
             else
             {
                 stimulus = new Word(item.stimulus, false, true);
                 stimulus.SetBounds((int)Setting.cStimulus.X, (int)Setting.cStimulus.Y, (int)Setting.sStimulus.X, (int)Setting.sStimulus.Y);
+
+                item.rStimuls.w = (int)(Setting.sStimulus.X + (2 * Setting.xBuffer));
+                item.rStimuls.h = (int)(Setting.sStimulus.Y + (2 * Setting.yBuffer));
             }
+            stimulus.Parent = this;
+            stimulus.SendToBack();
             this.Controls.Add(stimulus);
 
             if (item.choice[0].Contains("s.png"))
@@ -67,6 +78,9 @@ namespace ImplicitViewer
                 choice[0].SetBounds((int)(Setting.margin.X + Setting.xInterval * 5),
                                     (int)Setting.cWord[0].Y,
                                     210, 280);
+
+                item.rChoice[0].w = (int)(210 + (2 * Setting.xBuffer));
+                item.rChoice[0].h = (int)(280 + (2 * Setting.yBuffer));
             }
             else if (item.choice[0].Contains(".png"))
             {
@@ -75,6 +89,9 @@ namespace ImplicitViewer
                 choice[0].SetBounds((int)(Setting.margin.X + Setting.xInterval * 5),
                                     (int)Setting.cWord[0].Y,
                                     300, 400);
+
+                item.rChoice[0].w = (int)(300 + (2 * Setting.xBuffer));
+                item.rChoice[0].h = (int)(400 + (2 * Setting.yBuffer));
             }
             else
             {
@@ -83,7 +100,11 @@ namespace ImplicitViewer
                                     (int)Setting.cWord[5].Y,
                                     (int)Setting.sWord.X,
                                     (int)(Setting.sWord.Y * 1.5));
+
+                item.rChoice[0].w = (int)(Setting.sWord.X + (2 * Setting.xBuffer));
+                item.rChoice[0].h = (int)((Setting.sWord.Y * 1.5) + (2 * Setting.yBuffer));
             }
+            choice[0].Parent = this;
             this.Controls.Add(choice[0]);
 
             if (item.choice[1].Contains("s.png"))
@@ -93,6 +114,9 @@ namespace ImplicitViewer
                 choice[1].SetBounds((int)(Setting.SCREEN_WIDTH - (Setting.margin.X + Setting.xInterval * 5 + 210)),
                                     (int)Setting.cWord[4].Y,
                                     210, 280);
+
+                item.rChoice[1].w = (int)(210 + (2 * Setting.xBuffer));
+                item.rChoice[1].h = (int)(280 + (2 * Setting.yBuffer));
             }
             else if (item.choice[1].Contains(".png"))
             {
@@ -101,6 +125,9 @@ namespace ImplicitViewer
                 choice[1].SetBounds((int)(Setting.SCREEN_WIDTH - (Setting.margin.X + Setting.xInterval * 5 + 300)),
                                     (int)Setting.cWord[4].Y,
                                     300, 400);
+
+                item.rChoice[1].w = (int)(300 + (2 * Setting.xBuffer));
+                item.rChoice[1].h = (int)(400 + (2 * Setting.yBuffer));
             }
             else
             {
@@ -109,7 +136,11 @@ namespace ImplicitViewer
                                     (int)Setting.cWord[9].Y,
                                     (int)Setting.sWord.X,
                                     (int)(Setting.sWord.Y * 1.5));
+
+                item.rChoice[1].w = (int)(Setting.sWord.X + (2 * Setting.xBuffer));
+                item.rChoice[1].h = (int)((Setting.sWord.Y * 1.5) + (2 * Setting.yBuffer));
             }
+            choice[1].Parent = this;
             this.Controls.Add(choice[1]);
         }
 
@@ -157,8 +188,8 @@ namespace ImplicitViewer
             if (mapShow)
             {
                 Item item = (Item)Setting.taskList[(current - 1)];
-                //map = new Map();
-                map = new Panel();
+                map = new Map();
+                //map = new Panel();
 
                 //pan.BackColor = Color.FromArgb(90, 255, 255, 255);
                 map.BackColor = Color.Transparent;
@@ -173,7 +204,7 @@ namespace ImplicitViewer
                 //Graphics gr = this.CreateGraphics();
 
                 Brush brr = new SolidBrush(Color.Red);
-                Brush brb = new SolidBrush(Color.Red);
+                Brush brb = new SolidBrush(Color.SkyBlue);
                 foreach (Cdot c in item.cList)
                 {
                     if (c.y < Setting.margin.Y)
@@ -184,7 +215,19 @@ namespace ImplicitViewer
                         gr.FillRectangle(brr, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
                     map.BringToFront();
                 }
+                Pen myPen = new Pen(Color.Red);
+                gr.DrawRectangle(myPen, new Rectangle(item.rStimuls.x, item.rStimuls.y - Setting.margin.Y, item.rStimuls.w, item.rStimuls.h));
 
+                stimulus.SendToBack();
+                for (int i = 0; i < 2; i++)
+                {
+                    gr.DrawRectangle(myPen, new Rectangle(item.rChoice[i].x, item.rChoice[i].y - Setting.margin.Y, item.rChoice[i].w, item.rChoice[i].h));
+                    choice[i].SendToBack();
+                }
+
+                brr.Dispose();
+                brb.Dispose();
+                myPen.Dispose();
                 gr.Dispose();
 
                 mapShow = false;
