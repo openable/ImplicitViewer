@@ -165,7 +165,7 @@ namespace ImplicitViewer
 
             int type;
             string stimulus;
-            Rect rStimuls = new Rect();
+            Rect rStimuls;
             int nChoice;
             string[] choice;
             Rect[] rChoice;
@@ -194,6 +194,7 @@ namespace ImplicitViewer
                     w = line.Split('\t');
                     stimulus = w[1];
 
+                    rStimuls = new Rect();
                     //제시자극이 2줄로 넘어오는 경우를 대비하기 위해 if문 예외처리
                     if (w.Length == 6)
                     {
@@ -231,6 +232,7 @@ namespace ImplicitViewer
                         line = Setting.reader.ReadLine();
                         w = line.Split('\t');
                         choice[i] = w[0];
+
                         rChoice[i] = new Rect();
                         if (w.Length < 6)
                         {
