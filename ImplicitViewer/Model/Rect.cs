@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ImplicitViewer.Model
 {
-    class Sqaure
+    class Rect
     {
         public int x;   //x좌표
         public int y;   //y좌표
         public int w;   //너비 Width
         public int h;   //높이 Height
 
-        public Sqaure()
+        public Rect()
         {
             x = -1;
             y = -1;
@@ -21,7 +21,7 @@ namespace ImplicitViewer.Model
             h = -1;
         }
 
-        public Sqaure(int x, int y, int w, int h)
+        public Rect(int x, int y, int w, int h)
         {
             this.x = x;
             this.y = y;

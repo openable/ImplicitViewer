@@ -57,7 +57,7 @@
     </Compile>
     <Compile Include="Model\Cdot.cs" />
     <Compile Include="Model\Item.cs" />
-    <Compile Include="Model\Sqaure.cs" />
+    <Compile Include="Model\Rect.cs" />
     <Compile Include="Model\Word.cs">
       <SubType>Component</SubType>
     </Compile>
