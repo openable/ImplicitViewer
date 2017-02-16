@@ -11,13 +11,15 @@ namespace ImplicitViewer.Model
     {
         public int type;        //문항유형
         public string stimulus; //자극단어
-        public string[] choice; //선택단어 목록
+        public Rect rStimuls;   //자극단어 범위기록
+        public string[] choice; //선택순서 목록
+        public Rect[] rChoice;  //선택순서 범위기록
         public ArrayList cList; //시선좌표 raw line data, 점 찍을 수 있게
 
         public int pNum;        //문항번호
         public int rTime;       //응답시간
-        public int sTime;       //자극단어 응시시간
         public string dWord;    //선택단어
+        public int sTime;       //자극단어 응시시간
         public int[] gTime;     //선택순서 응시시간 저장용
 
         public Item()
