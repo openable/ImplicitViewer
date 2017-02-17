@@ -47,7 +47,7 @@
             // 
             this.taskNum.AutoSize = true;
             this.taskNum.BackColor = System.Drawing.Color.LightGray;
-            this.taskNum.Location = new System.Drawing.Point(23, 19);
+            this.taskNum.Location = new System.Drawing.Point(23, 13);
             this.taskNum.Name = "taskNum";
             this.taskNum.Size = new System.Drawing.Size(29, 12);
             this.taskNum.TabIndex = 0;
