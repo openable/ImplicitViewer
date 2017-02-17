@@ -142,7 +142,7 @@
             this.button5.Location = new System.Drawing.Point(445, 8);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(40, 23);
-            this.button5.TabIndex = 9;
+            this.button5.TabIndex = 11;
             this.button5.Text = "이동";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -152,7 +152,7 @@
             this.button6.Location = new System.Drawing.Point(491, 8);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(40, 23);
-            this.button6.TabIndex = 10;
+            this.button6.TabIndex = 12;
             this.button6.Text = "반영";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
@@ -163,7 +163,7 @@
             this.textBox5.MaxLength = 4;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(26, 21);
-            this.textBox5.TabIndex = 12;
+            this.textBox5.TabIndex = 9;
             this.textBox5.Text = "WR";
             this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
             this.textBox5.MouseEnter += new System.EventHandler(this.textBox5_MouseEnter);
@@ -174,7 +174,7 @@
             this.textBox6.MaxLength = 4;
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(26, 21);
-            this.textBox6.TabIndex = 11;
+            this.textBox6.TabIndex = 10;
             this.textBox6.Text = "HD";
             this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
             this.textBox6.MouseEnter += new System.EventHandler(this.textBox6_MouseEnter);
