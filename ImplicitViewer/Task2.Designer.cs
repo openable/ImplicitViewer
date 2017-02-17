@@ -165,6 +165,8 @@
             this.textBox5.Size = new System.Drawing.Size(26, 21);
             this.textBox5.TabIndex = 9;
             this.textBox5.Text = "WR";
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
+            this.textBox5.MouseEnter += new System.EventHandler(this.textBox5_MouseEnter);
             // 
             // textBox6
             // 
@@ -174,6 +176,8 @@
             this.textBox6.Size = new System.Drawing.Size(26, 21);
             this.textBox6.TabIndex = 10;
             this.textBox6.Text = "HD";
+            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
+            this.textBox6.MouseEnter += new System.EventHandler(this.textBox6_MouseEnter);
             // 
             // Task2
             // 
