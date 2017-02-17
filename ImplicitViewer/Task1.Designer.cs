@@ -159,7 +159,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(381, 10);
+            this.textBox5.Location = new System.Drawing.Point(382, 10);
             this.textBox5.MaxLength = 4;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(26, 21);
@@ -170,7 +170,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(413, 10);
+            this.textBox6.Location = new System.Drawing.Point(414, 10);
             this.textBox6.MaxLength = 4;
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(26, 21);
