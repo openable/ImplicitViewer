@@ -26,10 +26,10 @@ namespace ImplicitViewer
 
         private int mx;
         private int my;
-        private int mw;
-        private int mh;
-        private int mw2;
-        private int mh2;
+        private int mwl;
+        private int mhu;
+        private int mwr;
+        private int mhd;
 
         public Task1(int num)
         {
@@ -46,10 +46,10 @@ namespace ImplicitViewer
 
             mx = 0;
             my = 0;
-            mw = 0;
-            mh = 0;
-            mw2 = 0;
-            mh2 = 0;
+            mwl = 0;
+            mhu = 0;
+            mwr = 0;
+            mhd = 0;
         }
 
         private void initStimulus(Item item)
@@ -183,19 +183,19 @@ namespace ImplicitViewer
 
                 Pen myPen = new Pen(Color.Red);
                 gr.DrawRectangle(myPen,
-                                new Rectangle(item.rStimuls.x + mx - mw, 
-                                            item.rStimuls.y - Setting.margin.Y + my - mh,
-                                            item.rStimuls.w + mw2,
-                                            item.rStimuls.h + mh2));
+                                new Rectangle(item.rStimuls.x + mx - mwl, 
+                                            item.rStimuls.y - Setting.margin.Y + my - mhu,
+                                            mwl + item.rStimuls.w + mwr,
+                                            mhu + item.rStimuls.h + mhd));
 
                 stimulus.SendToBack();
                 for (int i = 0; i < 15; i++)
                 {
                     gr.DrawRectangle(myPen,
-                                new Rectangle(item.rChoice[i].x + mx - mw,
-                                            item.rChoice[i].y - Setting.margin.Y + my - mh,
-                                            item.rChoice[i].w + mw2,
-                                            item.rChoice[i].h + mh2));
+                                new Rectangle(item.rChoice[i].x + mx - mwl,
+                                            item.rChoice[i].y - Setting.margin.Y + my - mhu,
+                                            mwl + item.rChoice[i].w + mwr,
+                                            mhu + item.rChoice[i].h + mhd));
                     words[i].SendToBack();
                 }
 
@@ -246,6 +246,20 @@ namespace ImplicitViewer
                 e.Handled = true;
         }
 
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
+
+        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
+
         private void textBox1_MouseEnter(object sender, EventArgs e)
         {
             if (textBox1.Text.Equals("X"))
@@ -260,19 +274,33 @@ namespace ImplicitViewer
 
         private void textBox3_MouseEnter(object sender, EventArgs e)
         {
-            if (textBox3.Text.Equals("W"))
+            if (textBox3.Text.Equals("WL"))
                 textBox3.Text = "";
         }
 
         private void textBox4_MouseEnter(object sender, EventArgs e)
         {
-            if (textBox4.Text.Equals("H"))
+            if (textBox4.Text.Equals("HU"))
                 textBox4.Text = "";
+        }
+
+        private void textBox5_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox5.Text.Equals("WR"))
+                textBox5.Text = "";
+        }
+
+        private void textBox6_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox6.Text.Equals("HD"))
+                textBox6.Text = "";
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.Equals("X")|| textBox2.Text.Equals("Y") || textBox3.Text.Equals("W") || textBox4.Text.Equals("H"))
+            if (textBox1.Text.Equals("X")|| textBox2.Text.Equals("Y") ||
+                textBox3.Text.Equals("WL") || textBox4.Text.Equals("HU") ||
+                textBox5.Text.Equals("WR") || textBox6.Text.Equals("HD"))
             {
                 MessageBox.Show("숫자만 입력하세요.", "오류", MessageBoxButtons.OK);
                 return;
@@ -284,13 +312,20 @@ namespace ImplicitViewer
                 textBox2.Text = "0";
             if (textBox3.Text.Equals(""))
                 textBox3.Text = "0";
-            if (textBox3.Text.Equals(""))
-                textBox3.Text = "0";
+            if (textBox4.Text.Equals(""))
+                textBox4.Text = "0";
+            if (textBox5.Text.Equals(""))
+                textBox5.Text = "0";
+            if (textBox6.Text.Equals(""))
+                textBox6.Text = "0";
 
             mx = Convert.ToInt32(textBox1.Text);
             my = Convert.ToInt32(textBox2.Text);
-            mw = Convert.ToInt32(textBox3.Text);
-            mh = Convert.ToInt32(textBox4.Text);
+            mwl = Convert.ToInt32(textBox3.Text);
+            mhu = Convert.ToInt32(textBox4.Text);
+            mwr = Convert.ToInt32(textBox5.Text);
+            mhd = Convert.ToInt32(textBox6.Text);
+
 
             if (mapShow)
             {

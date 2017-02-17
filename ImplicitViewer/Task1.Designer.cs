@@ -39,6 +39,8 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // taskNum
@@ -120,7 +122,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(26, 21);
             this.textBox3.TabIndex = 7;
-            this.textBox3.Text = "W";
+            this.textBox3.Text = "WL";
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             this.textBox3.MouseEnter += new System.EventHandler(this.textBox3_MouseEnter);
             // 
@@ -131,13 +133,13 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(26, 21);
             this.textBox4.TabIndex = 8;
-            this.textBox4.Text = "H";
+            this.textBox4.Text = "HU";
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             this.textBox4.MouseEnter += new System.EventHandler(this.textBox4_MouseEnter);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(381, 8);
+            this.button5.Location = new System.Drawing.Point(445, 8);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(40, 23);
             this.button5.TabIndex = 9;
@@ -147,7 +149,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(427, 8);
+            this.button6.Location = new System.Drawing.Point(491, 8);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(40, 23);
             this.button6.TabIndex = 10;
@@ -155,11 +157,35 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(381, 10);
+            this.textBox5.MaxLength = 4;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(26, 21);
+            this.textBox5.TabIndex = 12;
+            this.textBox5.Text = "WR";
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
+            this.textBox5.MouseEnter += new System.EventHandler(this.textBox5_MouseEnter);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(413, 10);
+            this.textBox6.MaxLength = 4;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(26, 21);
+            this.textBox6.TabIndex = 11;
+            this.textBox6.Text = "HD";
+            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
+            this.textBox6.MouseEnter += new System.EventHandler(this.textBox6_MouseEnter);
+            // 
             // Task1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.textBox4);
@@ -195,5 +221,7 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }
