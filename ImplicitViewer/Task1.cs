@@ -28,6 +28,8 @@ namespace ImplicitViewer
         private int my;
         private int mw;
         private int mh;
+        private int mw2;
+        private int mh2;
 
         public Task1(int num)
         {
@@ -46,6 +48,8 @@ namespace ImplicitViewer
             my = 0;
             mw = 0;
             mh = 0;
+            mw2 = 0;
+            mh2 = 0;
         }
 
         private void initStimulus(Item item)
@@ -179,19 +183,19 @@ namespace ImplicitViewer
 
                 Pen myPen = new Pen(Color.Red);
                 gr.DrawRectangle(myPen,
-                                new Rectangle(item.rStimuls.x + mx, 
-                                            item.rStimuls.y - Setting.margin.Y + my,
-                                            item.rStimuls.w + mw,
-                                            item.rStimuls.h + mh));
+                                new Rectangle(item.rStimuls.x + mx - mw, 
+                                            item.rStimuls.y - Setting.margin.Y + my - mh,
+                                            item.rStimuls.w + mw2,
+                                            item.rStimuls.h + mh2));
 
                 stimulus.SendToBack();
                 for (int i = 0; i < 15; i++)
                 {
                     gr.DrawRectangle(myPen,
-                                new Rectangle(item.rChoice[i].x + mx,
-                                            item.rChoice[i].y - Setting.margin.Y + my,
-                                            item.rChoice[i].w + mw,
-                                            item.rChoice[i].h + mh));
+                                new Rectangle(item.rChoice[i].x + mx - mw,
+                                            item.rChoice[i].y - Setting.margin.Y + my - mh,
+                                            item.rChoice[i].w + mw2,
+                                            item.rChoice[i].h + mh2));
                     words[i].SendToBack();
                 }
 
