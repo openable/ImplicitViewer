@@ -12,11 +12,13 @@ namespace ImplicitViewer.Model
         private bool sequential = false;
         private double starTime;
         public string value;
+        public Rect nB;         // new boundary (x, y, width, height)
 
         public Word()
         {
             gazeTime = 0.0;
             starTime = 0.0;
+            nB = new Rect();
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             UseVisualStyleBackColor = true;
         }
@@ -25,6 +27,7 @@ namespace ImplicitViewer.Model
         {
             gazeTime = 0.0;
             starTime = 0.0;
+            nB = new Rect();
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             UseVisualStyleBackColor = true;
             if (!img) this.Text = text;
@@ -49,13 +52,13 @@ namespace ImplicitViewer.Model
             this.BackColor = System.Drawing.Color.Transparent;
         }
 
-        public bool isGazeHit(double time, double x, double y)
+        public bool newHit(double time, double x, double y)
         {
             bool isHit = false;
-            if ((this.Location.X - Setting.xBuffer) < x
-                && (this.Location.X + this.Size.Width + Setting.xBuffer) > x
-                && (this.Location.Y - Setting.yBuffer) < y
-                && (this.Location.Y + this.Size.Height + Setting.yBuffer) > y)
+            if (nB.x < x
+                && x < (nB.x + nB.w)
+                && nB.y < y
+                && y < (nB.y + nB.h))
             {
                 isHit = true;
                 if (!sequential)
