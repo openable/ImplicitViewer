@@ -37,6 +37,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // taskNum
@@ -133,11 +135,31 @@
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             this.textBox4.MouseEnter += new System.EventHandler(this.textBox4_MouseEnter);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(381, 8);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(40, 23);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "이동";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(427, 8);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(40, 23);
+            this.button6.TabIndex = 10;
+            this.button6.Text = "반영";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
             // Task1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -169,5 +191,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }
