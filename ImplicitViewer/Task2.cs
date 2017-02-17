@@ -23,12 +23,12 @@ namespace ImplicitViewer
         private bool mapShow = true;
         private bool sizeSet = true;        // 제시자극, 선택순서 너비, 높이 고정 명시 변수
 
-        private int mx;
-        private int my;
-        private int mwl;
-        private int mhu;
-        private int mwr;
-        private int mhd;
+        private int mx;     // modify x coordinate
+        private int my;     // modify y coordinate
+        private int mwl;    // modify width left coordinate
+        private int mhu;    // modify height up coordinate
+        private int mwr;    // modify width right coordinate
+        private int mhd;    // modify height down coordinate
 
         public Task2(int num)
         {
