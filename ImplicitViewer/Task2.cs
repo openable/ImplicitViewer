@@ -23,6 +23,11 @@ namespace ImplicitViewer
         private bool mapShow = true;
         private bool sizeSet = true;        // 제시자극, 선택순서 너비, 높이 고정 명시 변수
 
+        private int mx;
+        private int my;
+        private int mw;
+        private int mh;
+
         public Task2(int num)
         {
             InitializeComponent();
@@ -35,6 +40,11 @@ namespace ImplicitViewer
             taskNum.Text = "문항:\t" + task.pNum;
 
             initStimulus(task);
+
+            mx = 0;
+            my = 0;
+            mw = 0;
+            mh = 0;
         }
 
         private void initStimulus(Item item)
@@ -242,12 +252,20 @@ namespace ImplicitViewer
                     map.BringToFront();
                 }
                 Pen myPen = new Pen(Color.Red);
-                gr.DrawRectangle(myPen, new Rectangle(item.rStimuls.x, item.rStimuls.y - Setting.margin.Y, item.rStimuls.w, item.rStimuls.h));
+                gr.DrawRectangle(myPen,
+                                new Rectangle(item.rStimuls.x + mx,
+                                            item.rStimuls.y - Setting.margin.Y + my,
+                                            item.rStimuls.w + mw,
+                                            item.rStimuls.h + mh));
 
                 stimulus.SendToBack();
                 for (int i = 0; i < 2; i++)
                 {
-                    gr.DrawRectangle(myPen, new Rectangle(item.rChoice[i].x, item.rChoice[i].y - Setting.margin.Y, item.rChoice[i].w, item.rChoice[i].h));
+                    gr.DrawRectangle(myPen,
+                                new Rectangle(item.rChoice[i].x + mx,
+                                            item.rChoice[i].y - Setting.margin.Y + my,
+                                            item.rChoice[i].w + mw,
+                                            item.rChoice[i].h + mh));
                     choice[i].SendToBack();
                 }
 
@@ -320,6 +338,47 @@ namespace ImplicitViewer
         {
             if (textBox4.Text.Equals("H"))
                 textBox4.Text = "";
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Equals("X") || textBox2.Text.Equals("Y") || textBox3.Text.Equals("W") || textBox4.Text.Equals("H"))
+            {
+                MessageBox.Show("숫자만 입력하세요.", "오류", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (textBox1.Text.Equals(""))
+                textBox1.Text = "0";
+            if (textBox2.Text.Equals(""))
+                textBox2.Text = "0";
+            if (textBox3.Text.Equals(""))
+                textBox3.Text = "0";
+            if (textBox3.Text.Equals(""))
+                textBox3.Text = "0";
+
+            mx = Convert.ToInt32(textBox1.Text);
+            my = Convert.ToInt32(textBox2.Text);
+            mw = Convert.ToInt32(textBox3.Text);
+            mh = Convert.ToInt32(textBox4.Text);
+
+            if (mapShow)
+            {
+                //map panel이 없는 상태, 바로 새로 그림
+                button3_Click(sender, e);
+            }
+            else
+            {
+                //map panel이 있는 상태, 지우고 다시 그림
+                this.Controls.Remove(map);
+                mapShow = true;
+                button3_Click(sender, e);
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
