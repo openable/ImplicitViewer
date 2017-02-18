@@ -96,10 +96,11 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(349, 10);
+            this.textBox4.Font = new System.Drawing.Font("Gulim", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBox4.Location = new System.Drawing.Point(382, 1);
             this.textBox4.MaxLength = 4;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(26, 21);
+            this.textBox4.Size = new System.Drawing.Size(26, 16);
             this.textBox4.TabIndex = 8;
             this.textBox4.Text = "HU";
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
@@ -107,10 +108,11 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(317, 10);
+            this.textBox3.Font = new System.Drawing.Font("Gulim", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBox3.Location = new System.Drawing.Point(350, 8);
             this.textBox3.MaxLength = 4;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(26, 21);
+            this.textBox3.Size = new System.Drawing.Size(26, 16);
             this.textBox3.TabIndex = 7;
             this.textBox3.Text = "WL";
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
@@ -118,7 +120,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(285, 10);
+            this.textBox2.Location = new System.Drawing.Point(317, 10);
             this.textBox2.MaxLength = 4;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(26, 21);
@@ -129,7 +131,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(253, 10);
+            this.textBox1.Location = new System.Drawing.Point(285, 10);
             this.textBox1.MaxLength = 4;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(26, 21);
@@ -160,10 +162,11 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(382, 10);
+            this.textBox5.Font = new System.Drawing.Font("Gulim", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBox5.Location = new System.Drawing.Point(414, 8);
             this.textBox5.MaxLength = 4;
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(26, 21);
+            this.textBox5.Size = new System.Drawing.Size(26, 16);
             this.textBox5.TabIndex = 9;
             this.textBox5.Text = "WR";
             this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
@@ -171,10 +174,11 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(414, 10);
+            this.textBox6.Font = new System.Drawing.Font("Gulim", 5.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBox6.Location = new System.Drawing.Point(382, 16);
             this.textBox6.MaxLength = 4;
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(26, 21);
+            this.textBox6.Size = new System.Drawing.Size(26, 16);
             this.textBox6.TabIndex = 10;
             this.textBox6.Text = "HD";
             this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
