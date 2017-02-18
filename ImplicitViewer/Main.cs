@@ -320,7 +320,7 @@ namespace ImplicitViewer
                             continue;
 
                         w = line.Split('\t');
-                        Cdot cdot = new Cdot(Int32.Parse(w[1]), Int32.Parse(w[2]));
+                        Cdot cdot = new Cdot(Convert.ToDouble(w[0]), Int32.Parse(w[1]), Int32.Parse(w[2]));
                         if (w.Length > 3)
                             cdot.word = w[3];
                         item.cList.Add(cdot);
