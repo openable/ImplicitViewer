@@ -41,7 +41,7 @@ namespace ImplicitViewer
 
             current = num + 1;
             Item task = (Item)Setting.taskList[num];
-            taskNum.Text = "문항:\t" + task.pNum;
+            taskNum.Text = "문항:\t" + task.pNum + " (" + current + ")";
 
             initStimulus(task);
 
