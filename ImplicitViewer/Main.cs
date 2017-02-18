@@ -544,6 +544,7 @@ namespace ImplicitViewer
                     }
                     catch (Exception ex)        // 초기 실험에 데이터 없는 것 예외처리
                     {
+                        Setting.ID = Setting.ID.Substring(0, (Setting.ID.Length - 3));
                         Setting.SCREEN_WIDTH = 1920;
                         Setting.SCREEN_HEIGHT = 1080;
                         checkI = false;
@@ -569,8 +570,8 @@ namespace ImplicitViewer
                 int pNum;        //문항번호
                 int rTime;       //응답시간
                 string dWord;    //선택단어
-                int sTime = 0;       //자극단어 응시시간, 초기 실험 데이터에서 없는 경우를 위해 값 할당
-                int[] gTime = null;     //선택순서 응시시간 저장용, 초기 실험 데이터에서 없는 경우를 위해 값 할당
+                int sTime;       //자극단어 응시시간
+                int[] gTime;     //선택순서 응시시간 저장용
 
                 while ((line = Setting.reader.ReadLine()) != null)
                 {
@@ -607,11 +608,14 @@ namespace ImplicitViewer
                         if (!w[0].Equals("선택순서:"))
                         {
                             stimulus = stimulus + "\r\n" + w[0];
-                            rStimuls.x = (int)Convert.ToSingle(w[1]);
-                            rStimuls.y = (int)Convert.ToSingle(w[2]);
-                            // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
-                            rStimuls.w = (int)Convert.ToSingle(w[3]);
-                            rStimuls.h = (int)Convert.ToSingle(w[4]);
+                            if (checkI) // 초기 실험에서 데이터가 없는 경우 예외처리
+                            {
+                                rStimuls.x = (int)Convert.ToSingle(w[1]);
+                                rStimuls.y = (int)Convert.ToSingle(w[2]);
+                                // raw 데이터 출력에 이미 잘못되어서 Task 생성시 기본 환경 값을 토대로 바로 잡기로 함.
+                                rStimuls.w = (int)Convert.ToSingle(w[3]);
+                                rStimuls.h = (int)Convert.ToSingle(w[4]);
+                            }
                             line = Setting.reader.ReadLine();
                         }
 
@@ -667,6 +671,11 @@ namespace ImplicitViewer
                         dWord = w[1];
 
                         // **초기 실험 데이터에 없는 값 시작**
+
+                        // 초기 실험 데이터에 없는 경우 예외 처리
+                        sTime = 0;
+                        gTime = new int[nChoice];
+
                         if (checkI)
                         {
                             //응시시간 안내 줄 넘기기
@@ -709,13 +718,8 @@ namespace ImplicitViewer
                         item.pNum = pNum;
                         item.rTime = rTime;
                         item.dWord = dWord;
-
-                        // 초기 실험 데이터에 없는 경우 예외 처리
-                        if (checkI)
-                        {
-                            item.sTime = sTime;
-                            item.gTime = gTime;
-                        }
+                        item.sTime = sTime;
+                        item.gTime = gTime;
 
                         //시선응시 raw data line 인식
                         item.cList = new ArrayList();
@@ -772,6 +776,12 @@ namespace ImplicitViewer
                     stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                     stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 105), (int)Setting.margin.Y, 210, 280);
 
+                    if (item.rStimuls.x == 1)   // 초기 실험에서 데이터 없는 경우 예외 처리
+                    {
+                        item.rStimuls.x = (int)((Setting.SCREEN_WIDTH / 2 - 105)- Setting.xBuffer);
+                        item.rStimuls.y = (int)((int)Setting.margin.Y- Setting.yBuffer);
+                    }
+
                     if (item.sizeSet)
                     {
                         item.rStimuls.w = (int)(210 + (2 * Setting.xBuffer));
@@ -784,6 +794,12 @@ namespace ImplicitViewer
                     stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                     stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 150), (int)Setting.margin.Y, 300, 400);
 
+                    if (item.rStimuls.x == 1)   // 초기 실험에서 데이터 없는 경우 예외 처리
+                    {
+                        item.rStimuls.x = (int)((Setting.SCREEN_WIDTH / 2 - 150) - Setting.xBuffer);
+                        item.rStimuls.y = (int)((int)Setting.margin.Y - Setting.yBuffer);
+                    }
+
                     if (item.sizeSet)
                     {
                         item.rStimuls.w = (int)(300 + (2 * Setting.xBuffer));
@@ -794,6 +810,12 @@ namespace ImplicitViewer
                 {
                     stimulus = new Word(item.stimulus, false, true);
                     stimulus.SetBounds((int)Setting.cStimulus.X, (int)Setting.cStimulus.Y, (int)Setting.sStimulus.X, (int)Setting.sStimulus.Y);
+
+                    if (item.rStimuls.x == 1)   // 초기 실험에서 데이터 없는 경우 예외 처리
+                    {
+                        item.rStimuls.x = (int)(Setting.cStimulus.X - Setting.xBuffer);
+                        item.rStimuls.y = (int)(Setting.cStimulus.Y - Setting.yBuffer);
+                    }
 
                     if (item.sizeSet)
                     {
