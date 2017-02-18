@@ -92,6 +92,10 @@ namespace ImplicitViewer
                 }
             }
             stimulus.Parent = this;
+            stimulus.nB.x = item.rStimuls.x;
+            stimulus.nB.y = item.rStimuls.y;
+            stimulus.nB.w = item.rStimuls.w;
+            stimulus.nB.h = item.rStimuls.h;
             stimulus.SendToBack();
             this.Controls.Add(stimulus);
 
@@ -138,6 +142,10 @@ namespace ImplicitViewer
                 }
             }
             choice[0].Parent = this;
+            choice[0].nB.x = item.rChoice[0].x;
+            choice[0].nB.y = item.rChoice[0].y;
+            choice[0].nB.w = item.rChoice[0].w;
+            choice[0].nB.h = item.rChoice[0].h;
             this.Controls.Add(choice[0]);
 
             if (item.choice[1].Contains("s.png"))
@@ -181,6 +189,10 @@ namespace ImplicitViewer
                 }
             }
             choice[1].Parent = this;
+            choice[1].nB.x = item.rChoice[1].x;
+            choice[1].nB.y = item.rChoice[1].y;
+            choice[1].nB.w = item.rChoice[1].w;
+            choice[1].nB.h = item.rChoice[1].h;
             this.Controls.Add(choice[1]);
         }
 
@@ -245,16 +257,39 @@ namespace ImplicitViewer
 
                 Brush brr = new SolidBrush(Color.Red);
                 Brush brb = new SolidBrush(Color.SkyBlue);
+                bool check;
                 foreach (Cdot c in item.cList)
                 {
+                    check = true;
+
                     if (c.y < Setting.margin.Y)
                         continue;
-                    if (c.word == null)
-                        gr.FillRectangle(brb, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
-                    else
+
+                    if (stimulus.newHit(0, c.x, c.y))
+                    {
                         gr.FillRectangle(brr, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
-                    map.BringToFront();
+                        map.BringToFront();
+                        continue;
+                    }
+
+                    foreach (Word w in choice)
+                    {
+                        if (w.newHit(0, c.x, c.y))
+                        {
+                            gr.FillRectangle(brr, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
+                            map.BringToFront();
+                            check = false;
+                            break;
+                        }
+                    }
+
+                    if (check)
+                    {
+                        gr.FillRectangle(brb, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
+                        map.BringToFront();
+                    }
                 }
+
                 Pen myPen = new Pen(Color.Red);
                 gr.DrawRectangle(myPen,
                                 new Rectangle(item.rStimuls.x + mx - mwl,
@@ -416,7 +451,33 @@ namespace ImplicitViewer
 
         private void button6_Click(object sender, EventArgs e)
         {
+            Item item = (Item)Setting.taskList[(current - 1)];
 
+            stimulus.nB.x = item.rStimuls.x + mx - mwl;
+            stimulus.nB.y = item.rStimuls.y + my - mhu;
+            stimulus.nB.w = mwl + item.rStimuls.w + mwr;
+            stimulus.nB.h = mhu + item.rStimuls.h + mhd;
+
+            for (int i = 0; i < 1; i++)
+            {
+                choice[i].nB.x = item.rChoice[i].x + mx - mwl;
+                choice[i].nB.y = item.rChoice[i].y + my - mhu;
+                choice[i].nB.w = mwl + item.rChoice[i].w + mwr;
+                choice[i].nB.h = mhu + item.rChoice[i].h + mhd;
+            }
+
+            if (mapShow)
+            {
+                //map panel이 없는 상태, 바로 새로 그림
+                button3_Click(sender, e);
+            }
+            else
+            {
+                //map panel이 있는 상태, 지우고 다시 그림
+                this.Controls.Remove(map);
+                mapShow = true;
+                button3_Click(sender, e);
+            }
         }
     }
 }
