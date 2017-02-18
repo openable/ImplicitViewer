@@ -388,6 +388,18 @@ namespace ImplicitViewer
                 words[i].nB.h = mhu + item.rChoice[i].h + mhd;
             }
 
+            if (mapShow)
+            {
+                //map panel이 없는 상태, 바로 새로 그림
+                button3_Click(sender, e);
+            }
+            else
+            {
+                //map panel이 있는 상태, 지우고 다시 그림
+                this.Controls.Remove(map);
+                mapShow = true;
+                button3_Click(sender, e);
+            }
         }
     }
 }
