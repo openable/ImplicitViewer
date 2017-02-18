@@ -64,7 +64,7 @@ namespace ImplicitViewer
                 stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                 stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 105), (int)Setting.margin.Y, 210, 280);
 
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rStimuls.w = (int)(210 + (2 * Setting.xBuffer));
                     item.rStimuls.h = (int)(280 + (2 * Setting.yBuffer));
@@ -76,7 +76,7 @@ namespace ImplicitViewer
                 stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                 stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 150), (int)Setting.margin.Y, 300, 400);
 
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rStimuls.w = (int)(300 + (2 * Setting.xBuffer));
                     item.rStimuls.h = (int)(400 + (2 * Setting.yBuffer));
@@ -87,7 +87,7 @@ namespace ImplicitViewer
                 stimulus = new Word(item.stimulus, false, true);
                 stimulus.SetBounds((int)Setting.cStimulus.X, (int)Setting.cStimulus.Y, (int)Setting.sStimulus.X, (int)Setting.sStimulus.Y);
 
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rStimuls.w = (int)(Setting.sStimulus.X + (2 * Setting.xBuffer));
                     item.rStimuls.h = (int)(Setting.sStimulus.Y + (2 * Setting.yBuffer));
@@ -105,7 +105,7 @@ namespace ImplicitViewer
             {
                 words[i] = new Word(item.choice[i], false, false);
                 words[i].SetBounds((int)Setting.cWord[i].X, (int)Setting.cWord[i].Y, (int)Setting.sWord.X, (int)Setting.sWord.Y);
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rChoice[i].w = (int)(Setting.sWord.X + (2 * Setting.xBuffer));
                     item.rChoice[i].h = (int)(Setting.sWord.Y + (2 * Setting.yBuffer));
@@ -435,6 +435,8 @@ namespace ImplicitViewer
                 item.rChoice[i].w = words[i].nB.w;
                 item.rChoice[i].h = words[i].nB.h;
             }
+
+            item.sizeSet = false;
 
             mx = 0;
             my = 0;

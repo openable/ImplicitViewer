@@ -21,7 +21,6 @@ namespace ImplicitViewer
         private Map map;
         //private Panel map;
         private bool mapShow = true;
-        private bool sizeSet = true;        // 제시자극, 선택순서 너비, 높이 고정 명시 변수
 
         private int mx;     // modify x coordinate
         private int my;     // modify y coordinate
@@ -65,7 +64,7 @@ namespace ImplicitViewer
                 stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                 stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 105), (int)Setting.margin.Y, 210, 280);
 
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rStimuls.w = (int)(210 + (2 * Setting.xBuffer));
                     item.rStimuls.h = (int)(280 + (2 * Setting.yBuffer));
@@ -77,7 +76,7 @@ namespace ImplicitViewer
                 stimulus.Image = Image.FromFile(Application.StartupPath + "\\model\\" + item.stimulus);
                 stimulus.SetBounds((int)(Setting.SCREEN_WIDTH / 2 - 150), (int)Setting.margin.Y, 300, 400);
 
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rStimuls.w = (int)(300 + (2 * Setting.xBuffer));
                     item.rStimuls.h = (int)(400 + (2 * Setting.yBuffer));
@@ -88,7 +87,7 @@ namespace ImplicitViewer
                 stimulus = new Word(item.stimulus, false, true);
                 stimulus.SetBounds((int)Setting.cStimulus.X, (int)Setting.cStimulus.Y, (int)Setting.sStimulus.X, (int)Setting.sStimulus.Y);
 
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rStimuls.w = (int)(Setting.sStimulus.X + (2 * Setting.xBuffer));
                     item.rStimuls.h = (int)(Setting.sStimulus.Y + (2 * Setting.yBuffer));
@@ -110,7 +109,7 @@ namespace ImplicitViewer
                                     (int)Setting.cWord[0].Y,
                                     210, 280);
 
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rChoice[0].w = (int)(210 + (2 * Setting.xBuffer));
                     item.rChoice[0].h = (int)(280 + (2 * Setting.yBuffer));
@@ -124,7 +123,7 @@ namespace ImplicitViewer
                                     (int)Setting.cWord[0].Y,
                                     300, 400);
 
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rChoice[0].w = (int)(300 + (2 * Setting.xBuffer));
                     item.rChoice[0].h = (int)(400 + (2 * Setting.yBuffer));
@@ -138,7 +137,7 @@ namespace ImplicitViewer
                                     (int)Setting.sWord.X,
                                     (int)(Setting.sWord.Y * 1.5));
 
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rChoice[0].w = (int)(Setting.sWord.X + (2 * Setting.xBuffer));
                     item.rChoice[0].h = (int)((Setting.sWord.Y * 1.5) + (2 * Setting.yBuffer));
@@ -159,7 +158,7 @@ namespace ImplicitViewer
                                     (int)Setting.cWord[4].Y,
                                     210, 280);
 
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rChoice[1].w = (int)(210 + (2 * Setting.xBuffer));
                     item.rChoice[1].h = (int)(280 + (2 * Setting.yBuffer));
@@ -172,7 +171,7 @@ namespace ImplicitViewer
                 choice[1].SetBounds((int)(Setting.SCREEN_WIDTH - (Setting.margin.X + Setting.xInterval * 5 + 300)),
                                     (int)Setting.cWord[4].Y,
                                     300, 400);
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rChoice[1].w = (int)(300 + (2 * Setting.xBuffer));
                     item.rChoice[1].h = (int)(400 + (2 * Setting.yBuffer));
@@ -185,7 +184,7 @@ namespace ImplicitViewer
                                     (int)Setting.cWord[9].Y,
                                     (int)Setting.sWord.X,
                                     (int)(Setting.sWord.Y * 1.5));
-                if (sizeSet)
+                if (item.sizeSet)
                 {
                     item.rChoice[1].w = (int)(Setting.sWord.X + (2 * Setting.xBuffer));
                     item.rChoice[1].h = (int)((Setting.sWord.Y * 1.5) + (2 * Setting.yBuffer));
@@ -515,6 +514,8 @@ namespace ImplicitViewer
                 item.rChoice[i].w = choice[i].nB.w;
                 item.rChoice[i].h = choice[i].nB.h;
             }
+
+            item.sizeSet = false;
 
             mx = 0;
             my = 0;
