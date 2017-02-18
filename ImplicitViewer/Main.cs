@@ -419,16 +419,41 @@ namespace ImplicitViewer
             int? cnt = Setting.taskList?.Count;
             if (cnt == null)
             {
-                MessageBox.Show("업데이트 할 내역이 없습니다..", "오류", MessageBoxButtons.OK);
+                MessageBox.Show("업데이트 할 내역이 없습니다.", "오류", MessageBoxButtons.OK);
                 return;
             }
 
-            string newPath = Application.StartupPath + "NewGaze\\";
+            string newPath = path + "NewGaze\\";
             DirectoryInfo di = new DirectoryInfo(newPath);
             if (di.Exists == false)
             {
                 di.Create();
             }
+
+            Setting.csvFile = new StringBuilder();
+            Setting.rawFile = new StringBuilder();
+
+            Setting.csvFile.AppendLine("피험자 ID,문항번호,제시자극,응답시간,선택단어,단어,Eye Track time (ms)");
+            for (int i = 0; i < Setting.taskList.Count; i++)
+            {
+                Item item = (Item)Setting.taskList[i];
+
+                for (int j = 0; j < item.choice.Length; j++)
+                {
+                    Setting.csvFile.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6}",
+                        Setting.ID, item.pNum, item.stimulus.Replace("\r\n", " ").Replace(",", " +"),
+                        item.rTime, item.dWord,
+                        item.choice[j].Replace("\r\n", " ").Replace(",", " +"), item.gTime[j]));
+                }
+            }
+
+            Encoding encode = System.Text.Encoding.GetEncoding("ks_c_5601-1987");
+            Setting.writer = new StreamWriter(newPath + file.Substring(0, (file.Length - 7)) + "data.csv", true, encode);
+            Setting.writer.Write(Setting.csvFile);
+
+            Setting.writer.Close();
+
+            MessageBox.Show("업데이트 파일을 생성하였습니다.", "확인", MessageBoxButtons.OK);
         }
     }
 }
