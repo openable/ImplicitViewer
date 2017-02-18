@@ -330,25 +330,17 @@ namespace ImplicitViewer
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.Equals("X")|| textBox2.Text.Equals("Y") ||
-                textBox3.Text.Equals("WL") || textBox4.Text.Equals("HU") ||
-                textBox5.Text.Equals("WR") || textBox6.Text.Equals("HD"))
-            {
-                MessageBox.Show("숫자만 입력하세요.", "오류", MessageBoxButtons.OK);
-                return;
-            }
-
-            if (textBox1.Text.Equals(""))
+            if (textBox1.Text.Equals("X") || textBox1.Text.Equals(""))
                 textBox1.Text = "0";
-            if (textBox2.Text.Equals(""))
+            if (textBox2.Text.Equals("Y") || textBox2.Text.Equals(""))
                 textBox2.Text = "0";
-            if (textBox3.Text.Equals(""))
+            if (textBox3.Text.Equals("WL") || textBox3.Text.Equals(""))
                 textBox3.Text = "0";
-            if (textBox4.Text.Equals(""))
+            if (textBox4.Text.Equals("HU") || textBox4.Text.Equals(""))
                 textBox4.Text = "0";
-            if (textBox5.Text.Equals(""))
+            if (textBox5.Text.Equals("WR") || textBox5.Text.Equals(""))
                 textBox5.Text = "0";
-            if (textBox6.Text.Equals(""))
+            if (textBox6.Text.Equals("HD") || textBox6.Text.Equals(""))
                 textBox6.Text = "0";
 
             mx = Convert.ToInt32(textBox1.Text);
