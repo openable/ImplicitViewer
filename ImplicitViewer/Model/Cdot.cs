@@ -8,12 +8,14 @@ namespace ImplicitViewer.Model
 {
     class Cdot
     {
+        public double time;
         public int x;
         public int y;
         public string word;
 
         public Cdot()
         {
+            time = 0;
             x = -1;
             y = -1;
             word = "";
@@ -21,12 +23,22 @@ namespace ImplicitViewer.Model
 
         public Cdot(int x, int y)
         {
+            time = 0;
             this.x = x;
             this.y = y;
         }
 
         public Cdot(int x, int y, string w)
         {
+            time = 0;
+            this.x = x;
+            this.y = y;
+            this.word = w;
+        }
+
+        public Cdot(double t, int x, int y, string w)
+        {
+            time = t;
             this.x = x;
             this.y = y;
             this.word = w;
