@@ -55,7 +55,8 @@ namespace ImplicitViewer
                     textBox1.Text = file = openPanel.SafeFileName;
                     textBox1.Tag = fullPath = openPanel.FileName;
                     path = fullPath.Substring(0, (fullPath.Length - file.Length));
-                    fFullList = null;
+                    fList = new string[1] { file };
+                    fFullList = new string[1] { fullPath };
                 }
                 else
                 {
