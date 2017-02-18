@@ -111,6 +111,7 @@
             this.textBox6.Size = new System.Drawing.Size(26, 21);
             this.textBox6.TabIndex = 15;
             this.textBox6.Text = "WR";
+            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
             // 
             // textBox7
             // 
@@ -121,6 +122,7 @@
             this.textBox7.Size = new System.Drawing.Size(26, 21);
             this.textBox7.TabIndex = 16;
             this.textBox7.Text = "HD";
+            this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox7_KeyPress);
             // 
             // textBox5
             // 
@@ -131,6 +133,7 @@
             this.textBox5.Size = new System.Drawing.Size(26, 21);
             this.textBox5.TabIndex = 14;
             this.textBox5.Text = "HU";
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
             // 
             // textBox4
             // 
@@ -141,6 +144,7 @@
             this.textBox4.Size = new System.Drawing.Size(26, 21);
             this.textBox4.TabIndex = 13;
             this.textBox4.Text = "WL";
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // textBox3
             // 
@@ -150,6 +154,7 @@
             this.textBox3.Size = new System.Drawing.Size(26, 21);
             this.textBox3.TabIndex = 12;
             this.textBox3.Text = "Y";
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // textBox2
             // 
@@ -159,6 +164,7 @@
             this.textBox2.Size = new System.Drawing.Size(26, 21);
             this.textBox2.TabIndex = 11;
             this.textBox2.Text = "X";
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // button5
             // 

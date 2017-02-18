@@ -1008,5 +1008,47 @@ namespace ImplicitViewer
 
             Setting.writer.Close();
         }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
+
+         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
+
+        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
+
+        private void textBox7_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //숫자,백스페이스,마이너스,소숫점 만 입력받는다.
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
+                e.Handled = true;
+        }
     }
 }
