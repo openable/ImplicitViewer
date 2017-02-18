@@ -453,10 +453,5 @@ namespace ImplicitViewer
 
             MessageBox.Show("업데이트 파일을 생성하였습니다.", "확인", MessageBoxButtons.OK);
         }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
