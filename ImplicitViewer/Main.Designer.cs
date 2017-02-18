@@ -168,6 +168,7 @@
             this.button5.TabIndex = 17;
             this.button5.Text = "일괄 업데이트";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Main
             // 
