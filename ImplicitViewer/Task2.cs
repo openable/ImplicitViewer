@@ -498,6 +498,7 @@ namespace ImplicitViewer
             item.rStimuls.y = stimulus.nB.y;
             item.rStimuls.w = stimulus.nB.w;
             item.rStimuls.h = stimulus.nB.h;
+            item.sTime = (int)stimulus.gazeTime;
 
             for (int i = 0; i < 2; i++)
             {
@@ -505,6 +506,7 @@ namespace ImplicitViewer
                 item.rChoice[i].y = choice[i].nB.y;
                 item.rChoice[i].w = choice[i].nB.w;
                 item.rChoice[i].h = choice[i].nB.h;
+                item.gTime[i] = (int)choice[i].gazeTime;
             }
 
             item.sizeSet = false;
