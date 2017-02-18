@@ -41,6 +41,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // taskNum
@@ -179,11 +180,22 @@
             this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
             this.textBox6.MouseEnter += new System.EventHandler(this.textBox6_MouseEnter);
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(538, 8);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(40, 23);
+            this.button7.TabIndex = 14;
+            this.button7.Text = "확정";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Task2
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.button6);
@@ -223,5 +235,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button button7;
     }
 }

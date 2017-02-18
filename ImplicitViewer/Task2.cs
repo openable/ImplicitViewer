@@ -30,6 +30,9 @@ namespace ImplicitViewer
         private int mwr;    // modify width right coordinate
         private int mhd;    // modify height down coordinate
 
+        bool checkM = true; // 변경 버튼 눌렀는지 확인
+        bool checkA = true; // 반영 버튼 눌렀는지 확인
+
         public Task2(int num)
         {
             InitializeComponent();
@@ -435,6 +438,8 @@ namespace ImplicitViewer
             mwr = Convert.ToInt32(textBox5.Text);
             mhd = Convert.ToInt32(textBox6.Text);
 
+            checkM = false;
+
             if (mapShow)
             {
                 //map panel이 없는 상태, 바로 새로 그림
@@ -451,6 +456,12 @@ namespace ImplicitViewer
 
         private void button6_Click(object sender, EventArgs e)
         {
+            if (checkM)
+            {
+                MessageBox.Show("변경된 범위가 없습니다.", "확인", MessageBoxButtons.OK);
+                return;
+            }
+
             Item item = (Item)Setting.taskList[(current - 1)];
 
             stimulus.nB.x = item.rStimuls.x + mx - mwl;
@@ -458,13 +469,15 @@ namespace ImplicitViewer
             stimulus.nB.w = mwl + item.rStimuls.w + mwr;
             stimulus.nB.h = mhu + item.rStimuls.h + mhd;
 
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 2; i++)
             {
                 choice[i].nB.x = item.rChoice[i].x + mx - mwl;
                 choice[i].nB.y = item.rChoice[i].y + my - mhu;
                 choice[i].nB.w = mwl + item.rChoice[i].w + mwr;
                 choice[i].nB.h = mhu + item.rChoice[i].h + mhd;
             }
+
+            checkA = false;
 
             if (mapShow)
             {
@@ -478,6 +491,46 @@ namespace ImplicitViewer
                 mapShow = true;
                 button3_Click(sender, e);
             }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (checkA)
+            {
+                MessageBox.Show("반영 버튼을 먼저 누르세요.", "확인", MessageBoxButtons.OK);
+                return;
+            }
+
+            Item item = (Item)Setting.taskList[(current - 1)];
+
+            item.rStimuls.x = stimulus.nB.x;
+            item.rStimuls.y = stimulus.nB.y;
+            item.rStimuls.w = stimulus.nB.w;
+            item.rStimuls.h = stimulus.nB.h;
+
+            for (int i = 0; i < 2; i++)
+            {
+                item.rChoice[i].x = choice[i].nB.x;
+                item.rChoice[i].y = choice[i].nB.y;
+                item.rChoice[i].w = choice[i].nB.w;
+                item.rChoice[i].h = choice[i].nB.h;
+            }
+
+            mx = 0;
+            my = 0;
+            mwl = 0;
+            mhu = 0;
+            mwr = 0;
+            mhd = 0;
+
+            textBox1.Text = "0";
+            textBox2.Text = "0";
+            textBox3.Text = "0";
+            textBox4.Text = "0";
+            textBox5.Text = "0";
+            textBox6.Text = "0";
+
+            MessageBox.Show("수정된 범위를 반영했습니다.", "확인", MessageBoxButtons.OK);
         }
     }
 }
