@@ -925,7 +925,7 @@ namespace ImplicitViewer
 
         private void bulkWriter(string file)
         {
-            string newPath = path + "NewGaze\\";
+            string newPath = path + "NewGaze-" + mx + "-" + my + "-" + mwl + "-" + mhu + "-" + mwr + "-" + mhd + "\\";
             DirectoryInfo di = new DirectoryInfo(newPath);
             if (di.Exists == false)
                 di.Create();
