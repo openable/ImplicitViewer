@@ -15,6 +15,10 @@ namespace ImplicitViewer.Model
         public static string path;
         public static Encoding encode;
 
+        public static StringBuilder csvFile;
+        public static StringBuilder rawFile;
+        public static StreamWriter writer;
+
         public static string ID;
         public static int fontSize;
         public static int SCREEN_WIDTH;

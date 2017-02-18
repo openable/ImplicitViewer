@@ -408,5 +408,15 @@ namespace ImplicitViewer
                 showTask();
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int? cnt = Setting.taskList?.Count;
+            if (cnt == null)
+            {
+                MessageBox.Show("업데이트 할 내역이 없습니다..", "오류", MessageBoxButtons.OK);
+                return;
+            }
+        }
     }
 }
