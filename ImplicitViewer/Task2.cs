@@ -267,7 +267,7 @@ namespace ImplicitViewer
                     if (c.y < Setting.margin.Y)
                         continue;
 
-                    if (stimulus.newHit(0, c.x, c.y))
+                    if (stimulus.newHit(c.time, c.x, c.y))
                     {
                         gr.FillRectangle(brr, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
                         map.BringToFront();
@@ -276,7 +276,7 @@ namespace ImplicitViewer
 
                     foreach (Word w in choice)
                     {
-                        if (w.newHit(0, c.x, c.y))
+                        if (w.newHit(c.time, c.x, c.y))
                         {
                             gr.FillRectangle(brr, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
                             map.BringToFront();
