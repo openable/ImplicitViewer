@@ -18,6 +18,7 @@ namespace ImplicitViewer
     {
         public string path;
         public string file;
+        public string[] fFullList;
         public string[] fList;
         public string fullPath;
 
@@ -54,13 +55,14 @@ namespace ImplicitViewer
                     textBox1.Text = file = openPanel.SafeFileName;
                     textBox1.Tag = fullPath = openPanel.FileName;
                     path = fullPath.Substring(0, (fullPath.Length - file.Length));
-                    fList = null;
+                    fFullList = null;
                 }
                 else
                 {
                     textBox1.Text = "0 / " + openPanel.FileNames.Length;
                     path = openPanel.FileName.Substring(0, (openPanel.FileName.Length - openPanel.SafeFileName.Length));
-                    fList = openPanel.FileNames;
+                    fList = openPanel.SafeFileNames;
+                    fFullList = openPanel.FileNames;
                 }
 
             }
@@ -73,7 +75,7 @@ namespace ImplicitViewer
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox1.Tag.Equals("") && fList == null)
+            if (textBox1.Tag.Equals("") && fFullList == null)
                 MessageBox.Show("데이터 파일을 선택해 주세요.", "오류", MessageBoxButtons.OK);
             else
                 initReader();
@@ -88,10 +90,10 @@ namespace ImplicitViewer
         {
             string line;
             Setting.encode = System.Text.Encoding.GetEncoding("ks_c_5601-1987");
-            if (fList == null)
+            if (fFullList == null)
                 Setting.path = textBox1.Tag.ToString();
             else
-                Setting.path = fList[0];
+                Setting.path = fFullList[0];
             Setting.reader = new StreamReader(Setting.path, Setting.encode);
 
             line = Setting.reader.ReadLine();
@@ -347,14 +349,14 @@ namespace ImplicitViewer
 
                 Setting.reader.Close();
 
-                if (fList != null)
+                if (fFullList != null)
                 {
-                    textBox1.Text = "1 / " + fList.Length;
+                    textBox1.Text = "1 / " + fFullList.Length;
 
-                    for (int k = 1; k < fList.Length; k++)
+                    for (int k = 1; k < fFullList.Length; k++)
                     {
                         int num = 0;
-                        Setting.reader = new StreamReader(fList[k], Setting.encode);
+                        Setting.reader = new StreamReader(fFullList[k], Setting.encode);
 
 
                         while ((line = Setting.reader.ReadLine()) != null)
@@ -382,7 +384,7 @@ namespace ImplicitViewer
 
 
                         Setting.reader.Close();
-                        textBox1.Text = (k + 1) + " / " + fList.Length;
+                        textBox1.Text = (k + 1) + " / " + fFullList.Length;
                     }
                 }
 
@@ -463,7 +465,7 @@ namespace ImplicitViewer
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (textBox1.Tag.Equals("") && fList == null)
+            if (textBox1.Tag.Equals("") && fFullList == null)
             {
                 MessageBox.Show("데이터 파일을 선택해 주세요.", "오류", MessageBoxButtons.OK);
                 return;
@@ -510,13 +512,13 @@ namespace ImplicitViewer
 
         private void bulkReader()
         {
-            if (fList == null)
-                fList = new string[1] { fullPath };
+            if (fFullList == null)
+                fFullList = new string[1] { fullPath };
 
             Setting.encode = System.Text.Encoding.GetEncoding("ks_c_5601-1987");
-            for (int f = 0; f < fList.Length; f++)
+            for (int f = 0; f < fFullList.Length; f++)
             {
-                Setting.path = fList[f];
+                Setting.path = fFullList[f];
                 Setting.reader = new StreamReader(Setting.path, Setting.encode);
 
                 string[] w;
@@ -714,8 +716,8 @@ namespace ImplicitViewer
                 Setting.reader.Close();
 
                 bulkUpdate();
-//                bulkWriter();
-                textBox1.Text = (f + 1) + " / " + fList.Length;
+                bulkWriter(fList[f]);
+                textBox1.Text = (f + 1) + " / " + fFullList.Length;
             }
         }
 
