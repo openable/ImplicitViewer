@@ -18,12 +18,12 @@ namespace ImplicitViewer
     {
         public string path;
         public string file;
+        public string[] fList;
         public string fullPath;
 
         public Task1 task1;
         public Task2 task2;
         public int current;
-        private string[] fList;
 
         public Main()
         {
@@ -426,9 +426,7 @@ namespace ImplicitViewer
             string newPath = path + "NewGaze\\";
             DirectoryInfo di = new DirectoryInfo(newPath);
             if (di.Exists == false)
-            {
                 di.Create();
-            }
 
             Setting.csvFile = new StringBuilder();
             Setting.rawFile = new StringBuilder();
@@ -454,6 +452,11 @@ namespace ImplicitViewer
             Setting.writer.Close();
 
             MessageBox.Show("업데이트 파일을 생성하였습니다.", "확인", MessageBoxButtons.OK);
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

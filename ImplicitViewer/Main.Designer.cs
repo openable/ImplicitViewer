@@ -34,11 +34,18 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(65, 30);
+            this.label1.Location = new System.Drawing.Point(65, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(150, 23);
             this.label1.TabIndex = 0;
@@ -47,7 +54,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(80, 60);
+            this.button1.Location = new System.Drawing.Point(80, 50);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 23);
             this.button1.TabIndex = 1;
@@ -57,7 +64,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(80, 140);
+            this.button2.Location = new System.Drawing.Point(80, 130);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 23);
             this.button2.TabIndex = 2;
@@ -67,7 +74,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(80, 100);
+            this.textBox1.Location = new System.Drawing.Point(80, 90);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(120, 21);
@@ -77,7 +84,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(80, 220);
+            this.button3.Location = new System.Drawing.Point(80, 320);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(120, 23);
             this.button3.TabIndex = 4;
@@ -87,7 +94,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(80, 180);
+            this.button4.Location = new System.Drawing.Point(80, 170);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(120, 23);
             this.button4.TabIndex = 5;
@@ -95,11 +102,85 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Bold);
+            this.textBox6.Location = new System.Drawing.Point(174, 239);
+            this.textBox6.MaxLength = 4;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(26, 21);
+            this.textBox6.TabIndex = 15;
+            this.textBox6.Text = "WR";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Bold);
+            this.textBox7.Location = new System.Drawing.Point(126, 249);
+            this.textBox7.MaxLength = 4;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(26, 21);
+            this.textBox7.TabIndex = 16;
+            this.textBox7.Text = "HD";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Bold);
+            this.textBox5.Location = new System.Drawing.Point(126, 230);
+            this.textBox5.MaxLength = 4;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(26, 21);
+            this.textBox5.TabIndex = 14;
+            this.textBox5.Text = "HU";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Bold);
+            this.textBox4.Location = new System.Drawing.Point(80, 239);
+            this.textBox4.MaxLength = 4;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(26, 21);
+            this.textBox4.TabIndex = 13;
+            this.textBox4.Text = "WL";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(142, 203);
+            this.textBox3.MaxLength = 4;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(26, 21);
+            this.textBox3.TabIndex = 12;
+            this.textBox3.Text = "Y";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(110, 203);
+            this.textBox2.MaxLength = 4;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(26, 21);
+            this.textBox2.TabIndex = 11;
+            this.textBox2.Text = "X";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(80, 280);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(120, 23);
+            this.button5.TabIndex = 17;
+            this.button5.Text = "일괄 업데이트";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 361);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox1);
@@ -109,6 +190,7 @@
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "시작: 데이터 선택";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,6 +204,13 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button5;
     }
 }
 
