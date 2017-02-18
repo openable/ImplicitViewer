@@ -184,10 +184,10 @@ namespace ImplicitViewer
                 foreach (Cdot c in item.cList)
                 {
                     check = true;
-
+                    /*
                     if (c.y < Setting.margin.Y)
                         continue;
-
+                    */
                     if (stimulus.newHit(c.time, c.x, c.y))
                     {
                         gr.FillRectangle(brr, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
