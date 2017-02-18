@@ -28,6 +28,13 @@ namespace ImplicitViewer.Model
             this.y = y;
         }
 
+        public Cdot(double t, int x, int y)
+        {
+            time = t;
+            this.x = x;
+            this.y = y;
+        }
+
         public Cdot(int x, int y, string w)
         {
             time = 0;
