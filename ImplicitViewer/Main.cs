@@ -1050,5 +1050,41 @@ namespace ImplicitViewer
             if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != 8 && e.KeyChar != 45 && e.KeyChar != 46) //8:백스페이스,45:마이너스,46:소수점
                 e.Handled = true;
         }
+
+        private void textBox2_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Equals("X"))
+                textBox1.Text = "";
+        }
+
+        private void textBox3_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Equals("Y"))
+                textBox1.Text = "";
+        }
+
+        private void textBox4_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Equals("WL"))
+                textBox1.Text = "";
+        }
+
+        private void textBox5_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Equals("HU"))
+                textBox1.Text = "";
+        }
+
+        private void textBox6_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Equals("WR"))
+                textBox1.Text = "";
+        }
+
+        private void textBox7_MouseEnter(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Equals("HD"))
+                textBox1.Text = "";
+        }
     }
 }

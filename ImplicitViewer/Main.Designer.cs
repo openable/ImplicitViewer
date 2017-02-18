@@ -112,6 +112,7 @@
             this.textBox6.TabIndex = 15;
             this.textBox6.Text = "WR";
             this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
+            this.textBox6.MouseEnter += new System.EventHandler(this.textBox6_MouseEnter);
             // 
             // textBox7
             // 
@@ -123,6 +124,7 @@
             this.textBox7.TabIndex = 16;
             this.textBox7.Text = "HD";
             this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox7_KeyPress);
+            this.textBox7.MouseEnter += new System.EventHandler(this.textBox7_MouseEnter);
             // 
             // textBox5
             // 
@@ -134,6 +136,7 @@
             this.textBox5.TabIndex = 14;
             this.textBox5.Text = "HU";
             this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
+            this.textBox5.MouseEnter += new System.EventHandler(this.textBox5_MouseEnter);
             // 
             // textBox4
             // 
@@ -145,6 +148,7 @@
             this.textBox4.TabIndex = 13;
             this.textBox4.Text = "WL";
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
+            this.textBox4.MouseEnter += new System.EventHandler(this.textBox4_MouseEnter);
             // 
             // textBox3
             // 
@@ -155,6 +159,7 @@
             this.textBox3.TabIndex = 12;
             this.textBox3.Text = "Y";
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
+            this.textBox3.MouseEnter += new System.EventHandler(this.textBox3_MouseEnter);
             // 
             // textBox2
             // 
@@ -165,6 +170,7 @@
             this.textBox2.TabIndex = 11;
             this.textBox2.Text = "X";
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            this.textBox2.MouseEnter += new System.EventHandler(this.textBox2_MouseEnter);
             // 
             // button5
             // 
