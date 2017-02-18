@@ -33,6 +33,8 @@ namespace ImplicitViewer
         private int mwr;    // modify width right coordinate
         private int mhd;    // modify height down coordinate
 
+        private bool checkI = true;     // 초기 실험 데이터 판별용 변수
+
         public Main()
         {
             InitializeComponent();
@@ -535,8 +537,18 @@ namespace ImplicitViewer
                     w = line.Split('\t');
 
                     Setting.ID = w[1];
-                    Setting.SCREEN_WIDTH = Int32.Parse(w[3]);
-                    Setting.SCREEN_HEIGHT = Int32.Parse(w[4]);
+                    try
+                    {
+                        Setting.SCREEN_WIDTH = Int32.Parse(w[3]);
+                        Setting.SCREEN_HEIGHT = Int32.Parse(w[4]);
+                    }
+                    catch (Exception ex)        // 초기 실험에 데이터 없는 것 예외처리
+                    {
+                        Setting.SCREEN_WIDTH = 1920;
+                        Setting.SCREEN_HEIGHT = 1080;
+                        checkI = false;
+                        Console.WriteLine(ex.ToString());
+                    }
 
                     Setting.reader.Close();
                 }
@@ -557,8 +569,8 @@ namespace ImplicitViewer
                 int pNum;        //문항번호
                 int rTime;       //응답시간
                 string dWord;    //선택단어
-                int sTime;       //자극단어 응시시간
-                int[] gTime;     //선택순서 응시시간 저장용
+                int sTime = 0;       //자극단어 응시시간, 초기 실험 데이터에서 없는 경우를 위해 값 할당
+                int[] gTime = null;     //선택순서 응시시간 저장용, 초기 실험 데이터에서 없는 경우를 위해 값 할당
 
                 while ((line = Setting.reader.ReadLine()) != null)
                 {
@@ -654,46 +666,56 @@ namespace ImplicitViewer
                         w = line.Split('\t');
                         dWord = w[1];
 
-                        //응시시간 안내 줄 넘기기
-                        line = Setting.reader.ReadLine();
-
-                        //제시자극 응시시간 인식
-                        line = Setting.reader.ReadLine();
-                        w = line.Split('\t');
-                        sTime = (int)Convert.ToSingle(w[1]);
-
-                        //선택순서 응시시간 인식
-                        if (type == 1)
+                        // **초기 실험 데이터에 없는 값 시작**
+                        if (checkI)
                         {
-                            gTime = new int[15];
-                            for (int i = 0; i < 15; i++)
-                            {
-                                line = Setting.reader.ReadLine();
-                                w = line.Split('\t');
-                                gTime[i] = (int)Convert.ToSingle(w[1]);
-                            }
-                        }
-                        else
-                        {
-                            gTime = new int[2];
-                            for (int i = 0; i < 2; i++)
-                            {
-                                line = Setting.reader.ReadLine();
-                                w = line.Split('\t');
-                                gTime[i] = (int)Convert.ToSingle(w[1]);
-                            }
-                        }
-
-                        //총 응시시간, 총 이탈시간, 총 이동비중 정보는 인식하지 않고 뛰어넘음
-                        for (int i = 0; i < 3; i++)
+                            //응시시간 안내 줄 넘기기
                             line = Setting.reader.ReadLine();
+
+                            //제시자극 응시시간 인식
+                            line = Setting.reader.ReadLine();
+                            w = line.Split('\t');
+                            sTime = (int)Convert.ToSingle(w[1]);
+
+                            //선택순서 응시시간 인식
+                            if (type == 1)
+                            {
+                                gTime = new int[15];
+                                for (int i = 0; i < 15; i++)
+                                {
+                                    line = Setting.reader.ReadLine();
+                                    w = line.Split('\t');
+                                    gTime[i] = (int)Convert.ToSingle(w[1]);
+                                }
+                            }
+                            else
+                            {
+                                gTime = new int[2];
+                                for (int i = 0; i < 2; i++)
+                                {
+                                    line = Setting.reader.ReadLine();
+                                    w = line.Split('\t');
+                                    gTime[i] = (int)Convert.ToSingle(w[1]);
+                                }
+                            }
+
+                            //총 응시시간, 총 이탈시간, 총 이동비중 정보는 인식하지 않고 뛰어넘음
+                            for (int i = 0; i < 3; i++)
+                                line = Setting.reader.ReadLine();
+                        }
+                        // **초기 실험 데이터에 없는 값 끝**
 
                         //문항번호, 응답시간, 선택단어, 제시자극 응시시간, 선택순서 응시시간 정보 추가
                         item.pNum = pNum;
                         item.rTime = rTime;
                         item.dWord = dWord;
-                        item.sTime = sTime;
-                        item.gTime = gTime;
+
+                        // 초기 실험 데이터에 없는 경우 예외 처리
+                        if (checkI)
+                        {
+                            item.sTime = sTime;
+                            item.gTime = gTime;
+                        }
 
                         //시선응시 raw data line 인식
                         item.cList = new ArrayList();
@@ -704,10 +726,22 @@ namespace ImplicitViewer
                                 continue;
 
                             w = line.Split('\t');
-                            Cdot cdot = new Cdot(Convert.ToDouble(w[0]), Int32.Parse(w[1]), Int32.Parse(w[2]));
-                            if (w.Length > 3)
+                            if (w.Length == 4)
+                            {
+                                Cdot cdot = new Cdot(Convert.ToDouble(w[0]), Int32.Parse(w[1]), Int32.Parse(w[2]));
                                 cdot.word = w[3];
-                            item.cList.Add(cdot);
+                                item.cList.Add(cdot);
+                            }
+                            else if (w.Length == 3)
+                            {           // 아래 데이터 예외 처리 하면서 if문 분리시킴
+                                Cdot cdot = new Cdot(Convert.ToDouble(w[0]), Int32.Parse(w[1]), Int32.Parse(w[2]));
+                                item.cList.Add(cdot);
+                            }
+                            else
+                            {           // 초기 실험에 데이터 없는 것 예외처리
+                                Cdot cdot = (Cdot)item.cList[item.cList.Count-1];
+                                cdot.word = cdot.word + " " + w[0];
+                            }
                         }
 
                         Setting.taskList.Add(item);
