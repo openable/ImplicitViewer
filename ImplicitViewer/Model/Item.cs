@@ -22,6 +22,8 @@ namespace ImplicitViewer.Model
         public int sTime;       //자극단어 응시시간
         public int[] gTime;     //선택순서 응시시간 저장용
 
+        public bool sizeSet = true;        // 제시자극, 선택순서 너비, 높이 고정 명시 변수
+
         public Item()
         {
             type = 0;

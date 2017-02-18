@@ -22,7 +22,6 @@ namespace ImplicitViewer
         private Map map;
         //private Panel map;
         private bool mapShow = true;
-        private bool sizeSet = true;        // 제시자극, 선택순서 너비, 높이 고정 명시 변수
 
         private int mx;     // modify x coordinate
         private int my;     // modify y coordinate
