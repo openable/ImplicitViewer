@@ -92,6 +92,10 @@ namespace ImplicitViewer
                 }
             }
             stimulus.Parent = this;
+            stimulus.nB.x = item.rStimuls.x;
+            stimulus.nB.y = item.rStimuls.y;
+            stimulus.nB.w = item.rStimuls.w;
+            stimulus.nB.h = item.rStimuls.h;
             stimulus.SendToBack();
             this.Controls.Add(stimulus);
 
@@ -99,14 +103,18 @@ namespace ImplicitViewer
             {
                 words[i] = new Word(item.choice[i], false, false);
                 words[i].SetBounds((int)Setting.cWord[i].X, (int)Setting.cWord[i].Y, (int)Setting.sWord.X, (int)Setting.sWord.Y);
-                words[i].Parent = this;
-                this.Controls.Add(words[i]);
-
                 if (sizeSet)
                 {
                     item.rChoice[i].w = (int)(Setting.sWord.X + (2 * Setting.xBuffer));
                     item.rChoice[i].h = (int)(Setting.sWord.Y + (2 * Setting.yBuffer));
                 }
+
+                words[i].Parent = this;
+                words[i].nB.x = item.rChoice[i].x;
+                words[i].nB.y = item.rChoice[i].y;
+                words[i].nB.w = item.rChoice[i].w;
+                words[i].nB.h = item.rChoice[i].h;
+                this.Controls.Add(words[i]);
             }
         }
 
@@ -170,15 +178,37 @@ namespace ImplicitViewer
 
                 Brush brr = new SolidBrush(Color.Red);
                 Brush brb = new SolidBrush(Color.SkyBlue);
+                bool check;
                 foreach (Cdot c in item.cList)
                 {
+                    check = true;
+
                     if (c.y < Setting.margin.Y)
                         continue;
-                    if (c.word == null)
-                        gr.FillRectangle(brb, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
-                    else
+
+                    if (stimulus.newHit(0, c.x, c.y))
+                    {
                         gr.FillRectangle(brr, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
-                    map.BringToFront();
+                        map.BringToFront();
+                        continue;
+                    }
+
+                    foreach (Word w in words)
+                    {
+                        if (w.newHit(0, c.x, c.y))
+                        {
+                            gr.FillRectangle(brr, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
+                            map.BringToFront();
+                            check = false;
+                            break;
+                        }
+                    }
+
+                    if (check)
+                    {
+                        gr.FillRectangle(brb, (c.x - 2), (c.y - 2 - Setting.margin.Y), 5, 5);
+                        map.BringToFront();
+                    }
                 }
 
                 Pen myPen = new Pen(Color.Red);
@@ -343,6 +373,20 @@ namespace ImplicitViewer
 
         private void button6_Click(object sender, EventArgs e)
         {
+            Item item = (Item)Setting.taskList[(current - 1)];
+
+            stimulus.nB.x = item.rStimuls.x + mx - mwl;
+            stimulus.nB.y = item.rStimuls.y + my - mhu;
+            stimulus.nB.w = mwl + item.rStimuls.w + mwr;
+            stimulus.nB.h = mhu + item.rStimuls.h + mhd;
+
+            for (int i = 0; i < 15; i++)
+            {
+                words[i].nB.x = item.rChoice[i].x + mx - mwl;
+                words[i].nB.y = item.rChoice[i].y + my - mhu;
+                words[i].nB.w = mwl + item.rChoice[i].w + mwr;
+                words[i].nB.h = mhu + item.rChoice[i].h + mhd;
+            }
 
         }
     }
