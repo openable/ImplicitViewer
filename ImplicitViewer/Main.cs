@@ -16,6 +16,10 @@ namespace ImplicitViewer
 {
     public partial class Main : Form
     {
+        public string path;
+        public string file;
+        public string fullPath;
+
         public Task1 task1;
         public Task2 task2;
         public int current;
@@ -40,8 +44,9 @@ namespace ImplicitViewer
             {
                 if (openPanel.FileNames.Length == 1)
                 {
-                    textBox1.Text = openPanel.SafeFileName;
-                    textBox1.Tag = openPanel.FileName;
+                    textBox1.Text = file = openPanel.SafeFileName;
+                    textBox1.Tag = fullPath = openPanel.FileName;
+                    path = fullPath.Substring(0, (fullPath.Length - file.Length));
                     fList = null;
                 }
                 else
@@ -416,6 +421,13 @@ namespace ImplicitViewer
             {
                 MessageBox.Show("업데이트 할 내역이 없습니다..", "오류", MessageBoxButtons.OK);
                 return;
+            }
+
+            string newPath = Application.StartupPath + "NewGaze\\";
+            DirectoryInfo di = new DirectoryInfo(newPath);
+            if (di.Exists == false)
+            {
+                di.Create();
             }
         }
     }
